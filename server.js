@@ -1,7 +1,10 @@
+let http = require('http');
+
+
 let server = http.createServer();
 server.on('request', async (request, response) => {
-    response.writeHead(200, headerText);
-    let options = url.parse(request.url, true).query;
+    // response.writeHead(200, headerText);
+    // let options = url.parse(request.url, true).query;
     // response.write(JSON.stringify(options));
 
     // Heroku mod start
@@ -92,9 +95,10 @@ server.on('request', async (request, response) => {
     }
     // Heroku mod ends
 
-    if (request.url.startsWith("/create")) {
-        await createCounter(options.name, response);
-        return;
-    }
-    server.listen(process.env.PORT);
+    // if (request.url.startsWith("/create")) {
+    //     await createCounter(options.name, response);
+    //     return;
+    // }
 });
+
+server.listen(8080);
