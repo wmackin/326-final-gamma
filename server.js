@@ -4,10 +4,9 @@ let fs = require('fs');
 
 
 let server = http.createServer();
-let signedIn = false;
 server.on('request', async (request, response) => {
     // response.writeHead(200, headerText);
-    // let options = url.parse(request.url, true).query;
+    let options = url.parse(request.url, true).query;
     // response.write(JSON.stringify(options));
 
     // Heroku mod start
@@ -96,8 +95,8 @@ server.on('request', async (request, response) => {
         });
         return;
     } else if (request.url.endsWith("login")) {
-        signedIn = true;
-        fs.readFile('index.html', null, function (error, data) {
+        console.log(options);
+        fs.readFile('signup.html', null, function (error, data) {
             if (error) {
                 response.writeHead(404);
                 response.write('Whoops! File not found!');
@@ -109,7 +108,8 @@ server.on('request', async (request, response) => {
             }
             response.end();
         });
-        return;
+        return {'loggedIn': true};
+
     }
     // Heroku mod ends
 
