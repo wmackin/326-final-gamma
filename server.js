@@ -96,7 +96,7 @@ server.on('request', async (request, response) => {
         return;
     } else if (request.url.endsWith("login")) {
         console.log(options);
-        fs.readFile('signup.html', null, function (error, data) {
+        fs.readFile('index.html', null, function (error, data) {
             if (error) {
                 response.writeHead(404);
                 response.write('Whoops! File not found!');
@@ -108,7 +108,7 @@ server.on('request', async (request, response) => {
             }
             response.end();
         });
-        return {'loggedIn': true};
+        return ;
 
     }
     // Heroku mod ends
@@ -119,4 +119,4 @@ server.on('request', async (request, response) => {
     // }
 });
 
-server.listen(process.env.PORT);
+server.listen(8080);
