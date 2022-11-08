@@ -99,7 +99,7 @@ server.on('request', async (request, response) => {
         console.log(signedIn);
         signedIn = true;
         console.log(signedIn);
-        fs.readFile('home.html', null, function (error, data) {
+        fs.readFile('index.html', null, function (error, data) {
             if (error) {
                 response.writeHead(404);
                 response.write('Whoops! File not found!');
