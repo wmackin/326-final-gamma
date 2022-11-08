@@ -96,9 +96,7 @@ server.on('request', async (request, response) => {
         });
         return;
     } else if (request.url.endsWith("login")) {
-        console.log(signedIn);
         signedIn = true;
-        console.log(signedIn);
         fs.readFile('index.html', null, function (error, data) {
             if (error) {
                 response.writeHead(404);
