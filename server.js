@@ -4,6 +4,7 @@ let fs = require('fs');
 
 
 let server = http.createServer();
+let signedIn = false;
 server.on('request', async (request, response) => {
     // response.writeHead(200, headerText);
     // let options = url.parse(request.url, true).query;
@@ -82,6 +83,23 @@ server.on('request', async (request, response) => {
         return;
     } else if (request.url.endsWith("signup.html")) {
         fs.readFile('signup.html', null, function (error, data) {
+            if (error) {
+                response.writeHead(404);
+                response.write('Whoops! File not found!');
+            } else {
+                response.writeHead(200, {
+                    "Content-Type": "text/html"
+                });
+                response.write(data);
+            }
+            response.end();
+        });
+        return;
+    } else if (request.url.endsWith("login")) {
+        console.log(signedIn);
+        signedIn = true;
+        console.log(signedIn);
+        fs.readFile('home.html', null, function (error, data) {
             if (error) {
                 response.writeHead(404);
                 response.write('Whoops! File not found!');
