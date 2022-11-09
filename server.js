@@ -94,9 +94,30 @@ server.on('request', async (request, response) => {
             response.end();
         });
         return;
-    } else if (request.url.endsWith("login")) {
-        return {"sucess": true}
-
+    } else if (request.url.endsWith("login.js")) {
+        console.log("reached login.js");
+        fs.readFile('login.js', null, function (error, data) {
+            if (error) {
+                response.writeHead(404);
+                response.write('Whoops! File not found!');
+            } else {
+                response.writeHead(200, {
+                    "Content-Type": "text/javascript"
+                });
+                response.write(data);
+            }
+            response.end();
+        });
+        return;
+    }
+    else if (request.url.endsWith("login")) {
+        console.log('request made');
+        const value = { "success": true };
+        console.log(value);
+        console.log(value);
+        response.write(JSON.stringify(value));
+        response.end();
+        return;
     }
     // Heroku mod ends
 

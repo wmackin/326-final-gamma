@@ -1,13 +1,14 @@
+console.log("in login.js");
 document.getElementById("loginButton").addEventListener("click", async () => {
-    response = await fetch('https://whispering-woodland-38762.herokuapp.com/login', {
+    console.log('found event');
+    response = await fetch('./login', {
         method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ "username": "test", "password": "password123" })
-    })
+        headers: {'Content-Type': 'application/json'}
+    });
+    console.log(response);
     if (response.ok) {
-        response.then(response => response.json()).then(response => console.log(JSON.stringify(response)));
+        request = response.json();
+        console.log(request);
+        request.then(request => console.log(request));
     }
 });
