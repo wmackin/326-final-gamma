@@ -1,9 +1,11 @@
 let http = require('http');
 let url = require('url');
 let fs = require('fs');
+const { sign } = require('crypto');
 
 
 let server = http.createServer();
+let signedIn = false;
 server.on('request', async (request, response) => {
     // response.writeHead(200, headerText);
     let options = url.parse(request.url, true).query;
@@ -109,13 +111,35 @@ server.on('request', async (request, response) => {
             response.end();
         });
         return;
+    } else if (request.url.endsWith("main.js")) {
+        console.log("reached login.js");
+        fs.readFile('main.js', null, function (error, data) {
+            if (error) {
+                response.writeHead(404);
+                response.write('Whoops! File not found!');
+            } else {
+                response.writeHead(200, {
+                    "Content-Type": "text/javascript"
+                });
+                response.write(data);
+            }
+            response.end();
+        });
+        return;
     }
     else if (request.url.endsWith("login")) {
         console.log('request made');
+        signedIn = true;
         const value = { "success": true };
         console.log(value);
         console.log(value);
         response.write(JSON.stringify(value));
+        response.end();
+        return;
+    }
+    else if (request.url.endsWith("isSignedIn")) {
+        console.log(signedIn);
+        response.write(JSON.stringify({"signedIn": signedIn}));
         response.end();
         return;
     }
