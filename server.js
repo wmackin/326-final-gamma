@@ -95,20 +95,7 @@ server.on('request', async (request, response) => {
         });
         return;
     } else if (request.url.endsWith("login")) {
-        console.log(options);
-        fs.readFile('index.html', null, function (error, data) {
-            if (error) {
-                response.writeHead(404);
-                response.write('Whoops! File not found!');
-            } else {
-                response.writeHead(200, {
-                    "Content-Type": "text/html"
-                });
-                response.write(data);
-            }
-            response.end();
-        });
-        return ;
+        return {"sucess": true}
 
     }
     // Heroku mod ends
