@@ -40,3 +40,9 @@ Heroku Link: https://whispering-woodland-38762.herokuapp.com/index.html
 
 
 Here you can see that clicking login, then signing up and creating an account redirects to index where signup/login is replaced with an account button.
+
+## Division of Labor
+
+The whole team worked on defining the endpoints for part 1 of the doc.
+Code done at the time of the submission (mainly making the server and javascript for the home, login and signup pages, with a little bit done on the region page) was done by Will as well as the doc aside from part 1.
+Joshua added more javascript after the deadline passed for the region and home pages.
