@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Region Screen</title>
+    <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="region.js" defer></script>
 </head>
@@ -38,19 +39,21 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="list-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            #Champion-Specific
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Fiora</a>
+                            <a class="dropdown-item" href="#">Kayle</a>
+                            <a class="dropdown-item" href="#">Garen</a>
+                        </div>
+                    </div>
                     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                         #General-Region
                     </a>
                     <a href="#" class="list-group-item list-group-item-action">#Story-Specific</a>
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        #Champion-Specific
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Fiora</a></li>
-                        <li><a class="dropdown-item" href="#">Kayle</a></li>
-                        <li><a class="dropdown-item" href="#">Garen</a></li>
-                    </ul>
+                    
                     <a href="#" class="list-group-item list-group-item-action">#Fan-Fic</a>
                 </div>
             </div>
@@ -94,13 +97,6 @@
     </div>
 
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
