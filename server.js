@@ -166,7 +166,7 @@ server.on('request', async (request, response) => {
         return;
     }
     else if (request.url.endsWith("goToRegion")) {
-        championInfo = {name: "Demacia", img: "demacia-hallvalor.jpg"};
+        regionInfo = {name: "Demacia", img: "demacia-hallvalor.jpg"};
         response.write(JSON.stringify({"signedIn": signedIn}));
         response.end();
         return;

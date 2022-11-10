@@ -6,10 +6,14 @@ async function render() {
     if (response.ok) {
         request = response.json();
         request.then(request => {
+            console.log(request.name);
             document.getElementById('regionName').innerHTML = request.name;
             document.getElementById('regionImage').src = request.img;
         });
     }
+    else {
+        console.log("Call not ok")
+    }
 }
 
-window.onload = render;
+window.onload = render();
