@@ -1,4 +1,4 @@
-document.getElementById("loginButton").addEventListener("click", async () => {
+document.getElementById("signupButton").addEventListener("click", async () => {
     response = await fetch('./login', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
@@ -8,7 +8,4 @@ document.getElementById("loginButton").addEventListener("click", async () => {
         request.then(request => console.log(request));
         window.location.assign("./index.html");
     }
-});
-document.getElementById("signupButton").addEventListener("click", async () => {
-    window.location.assign("./signup.html");
 });
