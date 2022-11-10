@@ -1,4 +1,4 @@
-##Part 1
+# Part 1
 
 List of endpoints
 
@@ -29,12 +29,12 @@ List of endpoints
 
 Heroku Link: https://whispering-woodland-38762.herokuapp.com/index.html
 
-##Part 2
+# Part 2
 
-![example image](home.png)
-![example image](home.png)
-![example image](home.png)
-![example image](home.png)
+![example image](homepage1.png)
+![example image](loginpage.png)
+![example image](signuppage.png)
+![example image](homepage2.png)
 
 
 
