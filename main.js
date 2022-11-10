@@ -21,3 +21,18 @@ async function updateSignIn() {
     }
 }
 window.onload = updateSignIn;
+
+document.getElementById('demaciaButton').addEventListener('click', async () => {
+    console.log('test');
+    response = await fetch('./goToRegion', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (response.ok) {
+        request = response.json();
+        request.then(request => {
+            window.location.assign("./region.html");
+        });
+    }
+
+})

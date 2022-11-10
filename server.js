@@ -5,6 +5,7 @@ let fs = require('fs');
 
 let server = http.createServer();
 let signedIn = false;
+let regionInfo;
 server.on('request', async (request, response) => {
     // response.writeHead(200, headerText);
     let options = url.parse(request.url, true).query;
@@ -137,6 +138,20 @@ server.on('request', async (request, response) => {
             response.end();
         });
         return;
+    } else if (request.url.endsWith("region.js")) {
+        fs.readFile('region.js', null, function (error, data) {
+            if (error) {
+                response.writeHead(404);
+                response.write('Whoops! File not found!');
+            } else {
+                response.writeHead(200, {
+                    "Content-Type": "text/javascript"
+                });
+                response.write(data);
+            }
+            response.end();
+        });
+        return;
     }
     else if (request.url.endsWith("login")) {
         signedIn = true;
@@ -147,6 +162,17 @@ server.on('request', async (request, response) => {
     }
     else if (request.url.endsWith("isSignedIn")) {
         response.write(JSON.stringify({"signedIn": signedIn}));
+        response.end();
+        return;
+    }
+    else if (request.url.endsWith("goToRegion")) {
+        championInfo = {name: "Demacia", img: "demacia-hallvalor.jpg"};
+        response.write(JSON.stringify({"signedIn": signedIn}));
+        response.end();
+        return;
+    }
+    else if (request.url.endsWith("regionInfo")) {
+        response.write(JSON.stringify(regionInfo));
         response.end();
         return;
     }
