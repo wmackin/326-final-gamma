@@ -1,60 +1,60 @@
 [{
-    "name": "Demacia" // the name of the region
-    ,"image": "demacia-hallvalor.jpg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/demacia/" //the link towards the lore site for the region
+    "name": "Demacia" 
+    ,"image": "demacia-hallvalor.jpg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/demacia/" 
 },
 {
-    "name": "Bilgewater" // the name of the region
-    ,"image": "bilgewater_splash.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/bilgewater/" //the link towards the lore site for the region
-}
+    "name": "Bilgewater"
+    ,"image": "bilgewater_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/bilgewater/" 
+},
 {
-    "name": "Ionia" // the name of the region
-    ,"image": "Ionia-Splash-1920x960.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/ionia/" //the link towards the lore site for the region
-}
+    "name": "Ionia" 
+    ,"image": "Ionia-Splash-1920x960.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/ionia/" 
+},
 {
-    "name": "Ixtal" // the name of the region
-    ,"image": "ixtal_splash.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/ixtal/" //the link towards the lore site for the region
-}
+    "name": "Ixtal" 
+    ,"image": "ixtal_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/ixtal/" 
+},
 {
-    "name": "Noxus" // the name of the region
-    ,"image": "noxus_splash.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/noxus/" //the link towards the lore site for the region
-}
+    "name": "Noxus" 
+    ,"image": "noxus_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/noxus/" 
+},
 {
-    "name": "Piltover" // the name of the region
-    ,"image": "piltover-zindeloruneterra.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/piltover/" //the link towards the lore site for the region
-}
+    "name": "Piltover" 
+    ,"image": "piltover-zindeloruneterra.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/piltover/" 
+},
 {
-    "name": "Shadow Isles" // the name of the region
-    ,"image": "shadow-isles_splash.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/shadow-isles/" //the link towards the lore site for the region
-}
+    "name": "Shadow Isles" 
+    ,"image": "shadow-isles_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/shadow-isles/" 
+},
 {
-    "name": "Shurima" // the name of the region
-    ,"image": "shurima_splash.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/shurima/" //the link towards the lore site for the region
-}
+    "name": "Shurima" 
+    ,"image": "shurima_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/shurima/" 
+},
 {
-    "name": "Targon" // the name of the region
-    ,"image": "mount-targon_splash.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/mount-targon/" //the link towards the lore site for the region
-}
+    "name": "Targon" 
+    ,"image": "mount-targon_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/mount-targon/" 
+},
 {
-    "name": "The Freljord" // the name of the region
-    ,"image": "freljord_splash.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/freljord/" //the link towards the lore site for the region
-}
+    "name": "The Freljord" 
+    ,"image": "freljord_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/freljord/" 
+},
 {
-    "name": "The Void" // the name of the region
-    ,"image": "void-an-unknowable-power.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/void/" //the link towards the lore site for the region
-}
+    "name": "The Void" 
+    ,"image": "void-an-unknowable-power.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/void/" 
+},
 {
-    "name": "Zaun" // the name of the region
-    ,"image": "zaun_splash.jpeg" // the image of the region
-    ,"link": "https://universe.leagueoflegends.com/en_US/region/zaun/" //the link towards the lore site for the region
+    "name": "Zaun" 
+    ,"image": "zaun_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/zaun/" 
 }]

@@ -1,0 +1,364 @@
+[
+    {
+        "name": "Fizz"
+        ,"image": "Fizz_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/fizz/"
+        , "region":"Bilgewater"
+    },
+    {
+        "name": "Gangplank"
+        ,"image": "Gangplank_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/gangplank/"
+        , "region":"Bilgewater"
+    },
+    {
+        "name": "Graves"
+        ,"image": "Graves_00_Base-Cigar.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/graves/"
+        , "region":"Bilgewater"
+    },
+    {
+        "name": "Illaoi"
+        ,"image": "Illaoi_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/illaoi/"
+        , "region":"Bilgewater"
+    },
+    {
+        "name": "Twisted Fate"
+        ,"image": "TwistedFate_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/twistedfate/"
+        , "region":"Bilgewater"
+    },
+    {
+        "name": "Kayle"
+        ,"image": "Kayle_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/kayle/"
+        , "region":"Demacia"
+    },
+    {
+        "name": "Fiora"
+        ,"image": "fiora_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/fiora/"
+        , "region":"Demacia"
+    },
+    {
+        "name": "Galio"
+        ,"image": "Galio_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/galio/"
+        , "region":"Demacia"
+    },
+    {
+        "name": "Garen"
+        ,"image": "Garen_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/garen/"
+        , "region":"Demacia"
+    },
+    {
+        "name": "Jarvan IV"
+        ,"image": "JarvanIV_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/jarvaniv/"
+        , "region":"Demacia"
+    },
+    {
+        "name": "Ahri"
+        ,"image": "Ahri_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/ahri/"
+        , "region":"Ionia"
+    },
+    {
+        "name": "Akali"
+        ,"image": "Akali_61.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/akali/"
+        , "region":"Ionia"
+    },
+    {
+        "name": "Irelia"
+        ,"image": "Irelia_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/irelia/"
+        , "region":"Ionia"
+    },
+    {
+        "name": "Ivern"
+        ,"image": "Ivern_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/ivern/"
+        , "region":"Ionia"
+    },
+    {
+        "name": "Jhin"
+        ,"image": "Jhin_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/jhin/"
+        , "region":"Ionia"
+    },
+    {
+        "name": "Malphite"
+        ,"image": "Malphite_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/malphite/"
+        , "region":"Ixtal"
+    },
+    {
+        "name": "Neeko"
+        ,"image": "Neeko_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/neeko/"
+        , "region":"Ixtal"
+    },
+    {
+        "name": "Nidalee"
+        ,"image": "Nidalee_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/nidalee/"
+        , "region":"Ixtal"
+    },
+    {
+        "name": "Qiyanna"
+        ,"image": "Qiyana_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/qiyana/"
+        , "region":"Ixtal"
+    },
+    {
+        "name": "Rengar"
+        ,"image": "Rengar_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/rengar/"
+        , "region":"Ixtal"
+    },
+    {
+        "name": "Cassiopeia"
+        ,"image": "Cassiopeia_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/cassiopeia/"
+        , "region":"Noxus"
+    },
+    {
+        "name": "Darius"
+        ,"image": "Darius_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/darius/"
+        , "region":"Noxus"
+    },
+    {
+        "name": "Draven"
+        ,"image": "Draven_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/draven/"
+        , "region":"Noxus"
+    },
+    {
+        "name": "Katarina"
+        ,"image": "Katarina_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/katarina/"
+        , "region":"Noxus"
+    },
+    {
+        "name": "Kled"
+        ,"image": "Kled_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/kled/"
+        , "region":"Noxus"
+    },
+    {
+        "name": "Caitlyn"
+        ,"image": "Caitlyn_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/caitlyn/"
+        , "region":"Piltover"
+    },
+    {
+        "name": "Camille"
+        ,"image": "Camille_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/camille/"
+        , "region":"Piltover"
+    },
+    {
+        "name": "Ezreal"
+        ,"image": "Ezreal_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/ezreal/"
+        , "region":"Piltover"
+    },
+    {
+        "name": "Heimerdinger"
+        ,"image": "Heimerdinger_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/heimerdinger/"
+        , "region":"Piltover"
+    },
+    {
+        "name": "Jayce"
+        ,"image": "Jayce_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/jayce/"
+        , "region":"Piltover"
+    },
+    {
+        "name": "Elise"
+        ,"image": "Elise_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/elise/"
+        , "region":"Shadow Isles"
+    },
+    {
+        "name": "Gwen"
+        ,"image": "Gwen_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/gwen/"
+        , "region":"Shadow Isles"
+    },
+    {
+        "name": "Hecarim"
+        ,"image": "Hecarim_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/hecarim/"
+        , "region":"Shadow Isles"
+    },
+    {
+        "name": "Kalista"
+        ,"image": "Kalista_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/kalista/"
+        , "region":"Shadow Isles"
+    },
+    {
+        "name": "Karthus"
+        ,"image": "Karthus_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/karthus/"
+        , "region":"Shadow Isles"
+    },
+    {
+        "name": "Akshan"
+        ,"image": "072221_AkshanChampionTheme_Banner.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/akshan/"
+        , "region":"Shurima"
+    },
+    {
+        "name": "Amumu"
+        ,"image": "Amumu_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/amumu/"
+        , "region":"Shurima"
+    },
+    {
+        "name": "Azir"
+        ,"image": "Azir_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/azir/"
+        , "region":"Shurima"
+    },
+    {
+        "name": "Nasus"
+        ,"image": "Nasus_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/nasus/"
+        , "region":"Shurima"
+    },
+    {
+        "name": "Rammus"
+        ,"image": "Rammus_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/rammus/"
+        , "region":"Shurima"
+    },
+    {
+        "name": "Aphelios"
+        ,"image": "Aphelios_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/aphelios/"
+        , "region":"Targon"
+    },
+    {
+        "name": "Aurelion Sol"
+        ,"image": "AurelionSol_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/aurelionsol/"
+        , "region":"Targon"
+    },
+    {
+        "name": "Diana"
+        ,"image": "Diana_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/diana/"
+        , "region":"Targon"
+    },
+    {
+        "name": "Leona"
+        ,"image": "Leona_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/leona/"
+        , "region":"Targon"
+    },
+    {
+        "name": "Pantheon"
+        ,"image": "Pantheon_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/pantheon/"
+        , "region":"Targon"
+    },
+    {
+        "name": "Anivia"
+        ,"image": "Anivia_27.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/anivia/"
+        , "region":"The Freljord"
+    },
+    {
+        "name": "Ashe"
+        ,"image": "Ashe_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/ashe/"
+        , "region":"The Freljord"
+    },
+    {
+        "name": "Braum"
+        ,"image": "Braum_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/braum/"
+        , "region":"The Freljord"
+    },
+    {
+        "name": "Gnar"
+        ,"image": "Gnar_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/gnar/"
+        , "region":"The Freljord"
+    },
+    {
+        "name": "Gragas"
+        ,"image": "Gragas_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/gragas/"
+        , "region":"The Freljord"
+    },
+    {
+        "name": "Bel Veth"
+        ,"image": "Belveth_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/belveth/"
+        , "region":"The Void"
+    },
+    {
+        "name": "Cho'Gath"
+        ,"image": "Chogath_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/chogath/"
+        , "region":"The Void"
+    },
+    {
+        "name": "Kai'Sa"
+        ,"image": "kaisa-1280x1024.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/kaisa/"
+        , "region":"The Void"
+    },
+    {
+        "name": "Khazix"
+        ,"image": "Khazix_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/khazix/"
+        , "region":"The Void"
+    },
+    {
+        "name": "Kassadin"
+        ,"image": "Kassadin_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/kassadin/"
+        , "region":"The Void"
+    },
+    {
+        "name": "Blitzcrank"
+        ,"image": "Blitzcrank_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/blitzcrank/"
+        , "region":"Zaun"
+    },
+    {
+        "name": "Dr. Mundo"
+        ,"image": "DrMundo_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/drmundo/"
+        , "region":"Zaun"
+    },
+    {
+        "name": "Ekko"
+        ,"image": "Ekko_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/ekko/"
+        , "region":"Zaun"
+    },
+    {
+        "name": "Janna"
+        ,"image": "Janna_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/janna/"
+        , "region":"Zaun"
+    },
+    {
+        "name": "Jinx"
+        ,"image": "Jinx_0.jpg"
+        ,"link": "https://universe.leagueoflegends.com/en_US/champion/jinx/"
+        , "region":"Zaun"
+    }
+    
+
+]
