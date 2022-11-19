@@ -213,17 +213,27 @@ const port = process.env.PORT;     // we will listen on this port
 
 // client.connect();
 
+const { Client } = require('pg');
+
+const client = new Client({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'gamma_user_info',
+    password: '1234abcd',
+    port: 5432,
+});
+
+client.connect();
+
 app.use('/', urlencodedParser, express.static('.'));
-app.get('/champion', (req, res) => {
-    console.log('test');
+app.get('/champion', async (req, res) => {
     if (fs.existsSync('./data/champions.json')) {
         const championsJSON = fs.readFileSync('./data/champions.json');
         const champions = JSON.parse(championsJSON);
-        console.log(champions);
         const championsFiltered = champions.filter(x => x['name'].toLowerCase() === req.query['name'].toLowerCase());
-        console.log('test');
         if (championsFiltered.length === 0) {
             res.send('404 error');
+            return;
         }
         else {
             const champion = championsFiltered[0];
@@ -270,7 +280,7 @@ app.get('/champion', (req, res) => {
 
         <div class="row">
             <div class="display-1">
-            <a href=`
+            <a href=http://`
             content += champion.link;
             content += `>View official lore</a></div>
         </div>
@@ -310,19 +320,40 @@ app.get('/champion', (req, res) => {
 
         </div>
 
-    </div>
+    
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-    integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>`;
+<div class="fs-2">Discussion</div>`;
+            const client = new Client({
+                user: 'postgres',
+                host: 'localhost',
+                database: 'gamma_user_info',
+                password: '1234abcd',
+                port: 5432,
+            });
+            client.connect();
+            const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`);
+            // content += await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`, async (err, result) => {
+            //     let queryContent = "";
+                // if (err) throw err;
+            for (let row of queryResult.rows) {
+                content += '<div class="container"><div class="fs-5">By ';
+                content += row.username;
+                content += '</div><div class="fs-3">';
+                content += row.review;
+                content += '</div></div>';
+            }
+            content += `</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+    </body>
+    
+    </html>`;
             console.log(content);
             res.send(content);
         }
@@ -333,17 +364,17 @@ app.get('/champion', (req, res) => {
     res.end();
 });
 
-app.get('/db', async (req, res) => {
-    try {
-        const client = await pool.connect();
-        const result = await client.query('CREATE TABLE test(id int, review varchar(1000));');
-        const results = { 'results': (result) ? result.rows : null };
-        res.render('pages/db', results);
-        client.release();
-    } catch (err) {
-        console.error(err);
-        res.send("Error " + err);
-    }
-});
+// app.get('/db', async (req, res) => {
+//     try {
+//         const client = await pool.connect();
+//         const result = await client.query('CREATE TABLE test(id int, review varchar(1000));');
+//         const results = { 'results': (result) ? result.rows : null };
+//         res.render('pages/db', results);
+//         client.release();
+//     } catch (err) {
+//         console.error(err);
+//         res.send("Error " + err);
+//     }
+// });
 
 app.listen(8000, () => { });
