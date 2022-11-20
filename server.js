@@ -232,6 +232,12 @@ app.get('/champion.js', (req, res) => {
     res.send('./champion.js')
 });
 
+app.get('/getRegions', (req, res) => {
+    const regionsJSON = fs.readFileSync('./data/region.json');
+    const regions = JSON.parse(regionsJSON);
+    res.send(regions);
+});
+
 app.post('/addPost', (req, res) => {
     const user = req.params.user;
     const lore = req.params.lore;
@@ -248,8 +254,8 @@ app.post('/addPost', (req, res) => {
 })
 
 app.get('/champion', async (req, res) => {
-    if (fs.existsSync('./data/champions.json')) {
-        const championsJSON = fs.readFileSync('./data/champions.json');
+    if (fs.existsSync('./data/champion.json')) {
+        const championsJSON = fs.readFileSync('./data/champion.json');
         const champions = JSON.parse(championsJSON);
         const championsFiltered = champions.filter(x => x['name'].toLowerCase() === req.query['name'].toLowerCase());
         if (championsFiltered.length === 0) {
