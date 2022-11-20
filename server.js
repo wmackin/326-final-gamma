@@ -300,14 +300,14 @@ app.get('/champion', async (req, res) => {
                     
                     <div class="row">
                         <div class="text-right">
-                            <img src=`;
+                            <img src="images/championImages/`;
             content += champion.image;
-            content += ` class="img-thumbnail" style="width:960px;height:490px" id="championImage">
+            content += `" class="img-thumbnail" style="width:960px;height:490px" id="championImage">
         </div>
 
         <div class="row">
             <div class="fs-3">
-            <a href=http://`
+            <a href=`
             content += champion.link;
             content += `>View official lore</a></div>
         </div>
