@@ -1,0 +1,60 @@
+[{
+    "name": "Demacia" 
+    ,"image": "demacia-hallvalor.jpg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/demacia/" 
+},
+{
+    "name": "Bilgewater"
+    ,"image": "bilgewater_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/bilgewater/" 
+},
+{
+    "name": "Ionia" 
+    ,"image": "Ionia-Splash-1920x960.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/ionia/" 
+},
+{
+    "name": "Ixtal" 
+    ,"image": "ixtal_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/ixtal/" 
+},
+{
+    "name": "Noxus" 
+    ,"image": "noxus_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/noxus/" 
+},
+{
+    "name": "Piltover" 
+    ,"image": "piltover-zindeloruneterra.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/piltover/" 
+},
+{
+    "name": "Shadow Isles" 
+    ,"image": "shadow-isles_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/shadow-isles/" 
+},
+{
+    "name": "Shurima" 
+    ,"image": "shurima_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/shurima/" 
+},
+{
+    "name": "Targon" 
+    ,"image": "mount-targon_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/mount-targon/" 
+},
+{
+    "name": "The Freljord" 
+    ,"image": "freljord_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/freljord/" 
+},
+{
+    "name": "The Void" 
+    ,"image": "void-an-unknowable-power.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/void/" 
+},
+{
+    "name": "Zaun" 
+    ,"image": "zaun_splash.jpeg" 
+    ,"link": "https://universe.leagueoflegends.com/en_US/region/zaun/" 
+}]
