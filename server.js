@@ -189,6 +189,7 @@
 const express = require('express'); // express itself w/ CommonJS
 const app = express(); // this is the "app"
 const bodyParser = require('body-parser');
+const path = require('path');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 let fs = require('fs');
 const port = process.env.PORT;     // we will listen on this port
@@ -226,6 +227,26 @@ const client = new Client({
 client.connect();
 
 app.use('/', urlencodedParser, express.static('.'));
+
+app.get('/champion.js', (req, res) => {
+    res.send('./champion.js')
+})
+
+app.post('/addPost', (req, res) => {
+    const user = req.params.user;
+    const lore = req.params.lore;
+    const review = req.params.review;
+    const likes = 0;
+    const time_posted = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    client.query(`INSERT INTO reviews (username, lore, review, likes, time_posted) VALUES ('${user}', '${lore}', '${review}', ${likes}, '${time_posted}');`, (err, res) => {
+        if (err) throw err;
+        for (let row of res.rows) {
+            console.log(JSON.stringify(row));
+        }
+        client.end();
+    });
+})
+
 app.get('/champion', async (req, res) => {
     if (fs.existsSync('./data/champions.json')) {
         const championsJSON = fs.readFileSync('./data/champions.json');
@@ -279,7 +300,7 @@ app.get('/champion', async (req, res) => {
         </div>
 
         <div class="row">
-            <div class="display-1">
+            <div class="fs-3">
             <a href=http://`
             content += champion.link;
             content += `>View official lore</a></div>
@@ -298,13 +319,13 @@ app.get('/champion', async (req, res) => {
         <div class="row">
             <div class="col-lg-6">
                 <input type="text" class="form-control" placeholder="Type your thoughts here!"
-                    aria-label="Type your thoughts here!">
+                    aria-label="Type your thoughts here!" id="reviewBox">
             </div>
         </div>
 
         <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit Post</button>
-            <button class="btn btn-secondary" type="submit">Reply</button>
+            <button class="btn btn-primary" type="submit" id='submitPost'>Submit Post</button>
+            <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
         </div>
 
 
@@ -335,7 +356,7 @@ app.get('/champion', async (req, res) => {
             const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`);
             // content += await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`, async (err, result) => {
             //     let queryContent = "";
-                // if (err) throw err;
+            // if (err) throw err;
             for (let row of queryResult.rows) {
                 content += '<div class="container"><div class="fs-5">By ';
                 content += row.username;
@@ -351,10 +372,10 @@ app.get('/champion', async (req, res) => {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
         crossorigin="anonymous"></script>
+        <script src="champion.js"></script>
     </body>
     
     </html>`;
-            console.log(content);
             res.send(content);
         }
     }
@@ -362,6 +383,14 @@ app.get('/champion', async (req, res) => {
         res.send([]);
     }
     res.end();
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '/login.html'));
+});
+
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname, '/signup.html'));
 });
 
 // app.get('/db', async (req, res) => {
