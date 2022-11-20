@@ -19,7 +19,7 @@ client.connect();
 //   client.end();
 // });
 
-// client.query("INSERT INTO test (id, review) VALUES (1, 'hello');", (err, res) => {
+// client.query("INSERT INTO test (id, review) VALUES (2, 'world');", (err, res) => {
 //   if (err) throw err;
 //   for (let row of res.rows) {
 //     console.log(JSON.stringify(row));
@@ -34,3 +34,29 @@ client.connect();
 //   }
 //   client.end();
 // });
+
+// client.query("CREATE TABLE reviews ( username varchar(50), lore varchar(100), review varchar(1000), likes int, time_posted timestamp );", (err, res) => {
+//     if (err) throw err;
+//     for (let row of res.rows) {
+//         console.log(JSON.stringify(row));
+//     }
+//     client.end();
+// });
+
+// const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
+// console.log(time);
+// client.query(`INSERT INTO reviews (username, lore, review, likes, time_posted) VALUES ('test', 'name2', 'Very very excellent!', 0, '${time}');`, (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
+
+client.query('SELECT * FROM reviews;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});

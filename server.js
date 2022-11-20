@@ -230,7 +230,7 @@ app.use('/', urlencodedParser, express.static('.'));
 
 app.get('/champion.js', (req, res) => {
     res.send('./champion.js')
-})
+});
 
 app.post('/addPost', (req, res) => {
     const user = req.params.user;
