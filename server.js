@@ -66,8 +66,8 @@ app.get('/main.js', (req, res) => {
     res.send('./main.js');
 });
 
-app.get('/data.regions.json', (req, res) => {
-    res.send('./data.regions.json');
+app.get('/data/regions.json', (req, res) => {
+    res.send('./data/regions.json');
 });
 
 app.get('/getRegions', (req, res) => {
