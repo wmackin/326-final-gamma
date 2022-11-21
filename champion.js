@@ -11,6 +11,7 @@ async function postReview(){
     };
     await fetch('http://localhost:8000/addPost', {
         method: 'POST',
+        mode : 'no-cors',
         headers: {
             'Content-Type': 'application/json'
         },
