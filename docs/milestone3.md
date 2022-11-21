@@ -4,8 +4,10 @@ As for the functionality of our app data, we created a database from a JSON file
 
 # Describing our database
 
-
-
+The database has two tables. One is for login information with username and password columns, with the username as a primary key. We have another table for reviews (comments would be a more accurate name), with columns for username, lore (the page reviewed), review (the text of the review), likes, and time posted.
 
 
 # Division of labor
+
+Steve - implemented the data for region.JSON and champion.JSON, also contributed to rendering pages in the server.js file
+Will - contributed to rendering pages in the server.js file using data retrieved with SQL, set up postgreSQL server on heroku and created tables
