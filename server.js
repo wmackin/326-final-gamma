@@ -66,12 +66,12 @@ app.get('/main.js', (req, res) => {
     res.send('./main.js');
 });
 
-app.get('/data/regions.json', (req, res) => {
-    res.send('./data/regions.json');
-});
+// app.get('/data/regions.json', (req, res) => {
+//     res.send('./data/regions.json');
+// });
 
 app.get('/getRegions', (req, res) => {
-    const regionsJSON = fs.readFileSync('./data/regions.json');
+    const regionsJSON = fs.readFileSync('./data/regions.JSON');
     const regions = JSON.parse(regionsJSON);
     res.send(regions);
 });
