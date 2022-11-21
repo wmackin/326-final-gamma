@@ -42,6 +42,7 @@ async function generateDiscussion(name) {
 
 
 function dropDownChampions(region) {
+    console.log('testing');
     let options = ``;
     if (fs.existsSync('./data/champions.JSON')) {
         const championsJSON = fs.readFileSync('./data/champions.JSON');
@@ -94,7 +95,7 @@ app.get('/getRegions', (req, res) => {
 
 app.post('/addPost', (req, res) => {
     console.log("hello");
-    console.log(req.body)
+    console.log(req.body);
     const user = req.body.user;
     const lore = req.body.lore;
     const review = req.body.review;

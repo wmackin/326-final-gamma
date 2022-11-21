@@ -1,7 +1,10 @@
 const { Client } = require('pg');
 
 const client = new Client({
-  connectionString: process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 client.connect();
@@ -31,13 +34,14 @@ client.connect();
 //   client.end();
 // });
 
-// client.query("CREATE TABLE reviews ( username varchar(50), lore varchar(100), review varchar(1000), likes int, time_posted timestamp );", (err, res) => {
-//     if (err) throw err;
-//     for (let row of res.rows) {
-//         console.log(JSON.stringify(row));
-//     }
-//     client.end();
-// });
+client.query("CREATE TABLE reviews ( username varchar(50), lore varchar(100), review varchar(1000), likes int, time_posted timestamp );", (err, res) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+        console.log(JSON.stringify(row));
+    }
+    console.log("good");
+    client.end();
+});
 
 // client.query("CREATE TABLE users ( username varchar(50) PRIMARY KEY, password varchar(100) );", (err, res) => {
 //     if (err) throw err;
