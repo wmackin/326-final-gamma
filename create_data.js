@@ -4,7 +4,7 @@ const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'gamma_user_info',
-    password: '1234abcd',
+    password: 'password',
     port: 5432,
 });
 
@@ -43,15 +43,12 @@ client.connect();
 //     client.end();
 // });
 
-// const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
-// console.log(time);
-// client.query(`INSERT INTO reviews (username, lore, review, likes, time_posted) VALUES ('test', 'name2', 'Very very excellent!', 0, '${time}');`, (err, res) => {
-//   if (err) throw err;
-//   for (let row of res.rows) {
-//     console.log(JSON.stringify(row));
-//   }
-//   client.end();
-// });
+const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
+console.log(time);
+client.query(`INSERT INTO reviews (username, lore, review, time_posted, likes) VALUES ('x', 'name2', 'Very very excellent!','${time}',0);` , (err, res) => {
+  if (err) throw err;
+   
+ });
 
 client.query('SELECT * FROM reviews;', (err, res) => {
   if (err) throw err;
