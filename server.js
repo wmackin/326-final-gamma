@@ -59,11 +59,15 @@ function dropDownRegions() {
 app.use('/', urlencodedParser, express.static('.'));
 
 app.get('/champion.js', (req, res) => {
-    res.send('./champion.js')
+    res.send('./champion.js');
 });
 
 app.get('/main.js', (req, res) => {
-    res.send('./main.js')
+    res.send('./main.js');
+});
+
+app.get('/data.regions.json', (req, res) => {
+    res.send('./data.regions.json');
 });
 
 app.get('/getRegions', (req, res) => {
