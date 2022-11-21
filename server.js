@@ -86,6 +86,7 @@ app.get('/getRegions', (req, res) => {
 });
 
 app.post('/addPost', (req, res) => {
+    console.log("hello");
     console.log(req.body)
     const user = req.body.user;
     const lore = req.body.lore;
