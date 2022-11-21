@@ -62,6 +62,10 @@ app.get('/champion.js', (req, res) => {
     res.send('./champion.js')
 });
 
+app.get('/main.js', (req, res) => {
+    res.send('./main.js')
+});
+
 app.get('/getRegions', (req, res) => {
     const regionsJSON = fs.readFileSync('./data/regions.json');
     const regions = JSON.parse(regionsJSON);
