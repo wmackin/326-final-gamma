@@ -10,12 +10,8 @@ let fs = require('fs');
 const port = process.env.PORT;     // we will listen on this port
 const { Client } = require('pg');
 const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'gamma_user_info',
-    password: 'password',
-    port: 5432,
-});
+    connectionString: process.env.DATABASE_URL
+  });
 
 client.connect();
 
@@ -58,6 +54,7 @@ function dropDownRegions() {
     return options;
 }
 app.use('/', urlencodedParser, express.static('.'));
+
 app.get('/champion.js', (req, res) => {
     res.send('./champion.js')
 });
@@ -374,4 +371,4 @@ app.get('/signup', (req, res) => {
     res.sendFile(path.join(__dirname, '/signup.html'));
 });
 
-app.listen(8000, () => { });
+app.listen(process.env.PORT, () => { });
