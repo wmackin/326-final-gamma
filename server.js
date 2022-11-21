@@ -53,7 +53,7 @@ app.get('/champion.js', (req, res) => {
 });
 
 app.get('/getRegions', (req, res) => {
-    const regionsJSON = fs.readFileSync('./data/region.json');
+    const regionsJSON = fs.readFileSync('./data/regions.json');
     const regions = JSON.parse(regionsJSON);
     res.send(regions);
 });
@@ -75,8 +75,8 @@ app.post('/addPost', (req, res) => {
 })
 
 app.get('/champion', async (req, res) => {
-    if (fs.existsSync('./data/champion.json')) {
-        const championsJSON = fs.readFileSync('./data/champion.json');
+    if (fs.existsSync('./data/champions.json')) {
+        const championsJSON = fs.readFileSync('./data/champions.json');
         const champions = JSON.parse(championsJSON);
         const championsFiltered = champions.filter(x => x['name'].toLowerCase() === req.query['name'].toLowerCase());
         if (championsFiltered.length === 0) {
@@ -97,7 +97,6 @@ app.get('/champion', async (req, res) => {
                 </head>
                 <body>
                     <div class="row">
-<<<<<<< HEAD
                         <div class="col lg-2">
                             <div class="text-start">
                                 <a class="btn btn-primary" href="/" role="button">Home</a>
@@ -113,7 +112,7 @@ app.get('/champion', async (req, res) => {
                         <div class="container">
                             <div class="row">
                                 <div class="text-right">
-                                    <img src=${champion.image} class="img-thumbnail" style="width:960px;height:490px" id="championImage">
+                                    <img src=images/championImages/${champion.image} class="img-thumbnail" style="width:960px;height:490px" id="championImage">
                                 </div>
                             <div class="row">
                                 <div class="fs-3">
@@ -181,7 +180,7 @@ app.get('/region', async (req, res) => {
         }
         else {
             const region = regionsFiltered[0];
-            const discussion = await generateDiscussion(region.name)
+            const discussion = await generateDiscussion(region.name);
             let content = 
            `<!DOCTYPE html>
             <html lang="en">
@@ -210,7 +209,7 @@ app.get('/region', async (req, res) => {
                     <div class="container">          
                         <div class="row">
                             <div class="text-right">
-                                <img src=${region.image} class="img-thumbnail" style="width:960px;height:490px" id="regionImage">
+                                <img src=images/${region.image} class="img-thumbnail" style="width:960px;height:490px" id="regionImage">
                             </div>
                         </div>
                         <div class="row">
@@ -259,91 +258,89 @@ app.get('/region', async (req, res) => {
                     <script src="./champion.js"></script>
                 </body>
             </html>`;
-=======
-                        <div class="text-right">
-                            <img src="images/championImages/`;
-            content += champion.image;
-            content += `" class="img-thumbnail" style="width:960px;height:490px" id="championImage">
-        </div>
+//                         <div class="text-right">
+//                             <img src="images/championImages/`;
+//             content += champion.image;
+//             content += `" class="img-thumbnail" style="width:960px;height:490px" id="championImage">
+//         </div>
 
-        <div class="row">
-            <div class="fs-3">
-            <a href=`
-            content += champion.link;
-            content += `>View official lore</a></div>
-        </div>
-        <div class="row">
-            <div class="col-lg-2">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                        #General-Region
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">#Story-Specific</a>
-                    <a href="#" class="list-group-item list-group-item-action">#Fan-Fic</a>
-                </div>
-        </div> 
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Type your thoughts here!"
-                    aria-label="Type your thoughts here!" id="reviewBox">
-            </div>
-        </div>
+//         <div class="row">
+//             <div class="fs-3">
+//             <a href=`
+//             content += champion.link;
+//             content += `>View official lore</a></div>
+//         </div>
+//         <div class="row">
+//             <div class="col-lg-2">
+//                 <div class="list-group">
+//                     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+//                         #General-Region
+//                     </a>
+//                     <a href="#" class="list-group-item list-group-item-action">#Story-Specific</a>
+//                     <a href="#" class="list-group-item list-group-item-action">#Fan-Fic</a>
+//                 </div>
+//         </div> 
+//         </div>
+//         <div class="row">
+//             <div class="col-lg-6">
+//                 <input type="text" class="form-control" placeholder="Type your thoughts here!"
+//                     aria-label="Type your thoughts here!" id="reviewBox">
+//             </div>
+//         </div>
 
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit" id='submitPost'>Submit Post</button>
-            <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
-        </div>
+//         <div class="col-12">
+//             <button class="btn btn-primary" type="submit" id='submitPost'>Submit Post</button>
+//             <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
+//         </div>
 
 
-        <div class="row">
-            <div class="text-right">
+//         <div class="row">
+//             <div class="text-right">
 
-                <img src="67-676994_4-stars-four-out-of-five-stars.png" class="rounded"
-                    style="width: 100px;height: 23px">
-            </div>
-        </div>
+//                 <img src="67-676994_4-stars-four-out-of-five-stars.png" class="rounded"
+//                     style="width: 100px;height: 23px">
+//             </div>
+//         </div>
 
-        <div class="text-start">
+//         <div class="text-start">
 
-        </div>
+//         </div>
 
     
 
-</div>
-<div class="fs-2">Discussion</div>`;
-            const client = new Client({
-                user: 'postgres',
-                host: 'localhost',
-                database: 'gamma_user_info',
-                password: '1234abcd',
-                port: 5432,
-            });
-            client.connect();
-            const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`);
-            // content += await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`, async (err, result) => {
-            //     let queryContent = "";
-            // if (err) throw err;
-            for (let row of queryResult.rows) {
-                content += '<div class="container"><div class="fs-5">By ';
-                content += row.username;
-                content += '</div><div class="fs-3">';
-                content += row.review;
-                content += '</div></div>';
-            }
-            content += `</div>
+// </div>
+// <div class="fs-2">Discussion</div>`;
+//             const client = new Client({
+//                 user: 'postgres',
+//                 host: 'localhost',
+//                 database: 'gamma_user_info',
+//                 password: '1234abcd',
+//                 port: 5432,
+//             });
+//             client.connect();
+//             const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`);
+//             // content += await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`, async (err, result) => {
+//             //     let queryContent = "";
+//             // if (err) throw err;
+//             for (let row of queryResult.rows) {
+//                 content += '<div class="container"><div class="fs-5">By ';
+//                 content += row.username;
+//                 content += '</div><div class="fs-3">';
+//                 content += row.review;
+//                 content += '</div></div>';
+//             }
+//             content += `</div>
     
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-        crossorigin="anonymous"></script>
-        <script src="champion.js"></script>
-    </body>
+//     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+//         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+//         crossorigin="anonymous"></script>
+//     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+//         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+//         crossorigin="anonymous"></script>
+//         <script src="champion.js"></script>
+//     </body>
     
-    </html>`;
->>>>>>> f5662a761c0e8bdb7c99c02082669be384b154b1
+//     </html>`;
             res.send(content);
         }
     }

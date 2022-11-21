@@ -61,7 +61,7 @@ async function loadRegions() {
                 newButton.classList.add('btn-square-lg');
                 newButton.classList.add('ms-1');
                 newButton.addEventListener("click", () => {
-                    window.location.assign("/region/" + regions[i].name);
+                    window.location.assign("/region/?name=" + regions[i].name);
                 });
                 let textNode = document.createTextNode(regions[i].name);
                 newButton.appendChild(textNode);
