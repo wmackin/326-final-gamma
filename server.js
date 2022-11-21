@@ -10,7 +10,10 @@ let fs = require('fs');
 const port = process.env.PORT;     // we will listen on this port
 const { Client } = require('pg');
 const client = new Client({
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
   });
 
 client.connect();
@@ -56,7 +59,15 @@ function dropDownRegions() {
 app.use('/', urlencodedParser, express.static('.'));
 
 app.get('/champion.js', (req, res) => {
-    res.send('./champion.js')
+    res.send('./champion.js');
+});
+
+app.get('/main.js', (req, res) => {
+    res.send('./main.js');
+});
+
+app.get('/data.regions.json', (req, res) => {
+    res.send('./data.regions.json');
 });
 
 app.get('/getRegions', (req, res) => {
