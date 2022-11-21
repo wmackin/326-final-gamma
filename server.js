@@ -34,8 +34,8 @@ async function generateDiscussion(name){
 
 function dropDownChampions(region) {
     let options = ``;
-    if (fs.existsSync('./data/champions.json')) {
-        const championsJSON = fs.readFileSync('./data/champions.json');
+    if (fs.existsSync('./data/champions.JSON')) {
+        const championsJSON = fs.readFileSync('./data/champions.JSON');
         let champions = JSON.parse(championsJSON);
         champions = champions.filter(x => x['region'].toLowerCase() === region.toLowerCase());
         for(let i = 0; i < champions.length; i++) {
@@ -47,8 +47,8 @@ function dropDownChampions(region) {
 
 function dropDownRegions() {
     let options = ``;
-    if (fs.existsSync('./data/regions.json')) {
-        const regionsJSON = fs.readFileSync('./data/regions.json');
+    if (fs.existsSync('./data/regions.JSON')) {
+        const regionsJSON = fs.readFileSync('./data/regions.JSON');
         let regions = JSON.parse(regionsJSON);
         for(let i = 0; i < regions.length; i++) {
             options += `<a class="dropdown-item" href="/region?name=${regions[i].name}"> ${regions[i].name} </a>`;
@@ -93,8 +93,8 @@ app.post('/addPost', (req, res) => {
 })
 
 app.get('/champion', async (req, res) => {
-    if (fs.existsSync('./data/champions.json')) {
-        const championsJSON = fs.readFileSync('./data/champions.json');
+    if (fs.existsSync('./data/champions.JSON')) {
+        const championsJSON = fs.readFileSync('./data/champions.JSON');
         const champions = JSON.parse(championsJSON);
         const championsFiltered = champions.filter(x => x['name'].toLowerCase() === req.query['name'].toLowerCase());
         if (championsFiltered.length === 0) {
@@ -192,8 +192,8 @@ app.get('/champion', async (req, res) => {
 });
 
 app.get('/region', async (req, res) => {
-    if (fs.existsSync('./data/regions.json')) {
-        const regionsJSON = fs.readFileSync('./data/regions.json');
+    if (fs.existsSync('./data/regions.JSON')) {
+        const regionsJSON = fs.readFileSync('./data/regions.JSON');
         const regions = JSON.parse(regionsJSON);
         const regionsFiltered = regions.filter(x => x['name'].toLowerCase() === req.query['name'].toLowerCase());
         if (regionsFiltered.length === 0) {
