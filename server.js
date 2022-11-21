@@ -71,7 +71,7 @@ app.get('/main.js', (req, res) => {
 // });
 
 app.get('/getRegions', (req, res) => {
-    const regionsJSON = fs.readFileSync('data/regions.json');
+    const regionsJSON = fs.readFileSync('./data/regions.JSON');
     const regions = JSON.parse(regionsJSON);
     res.send(regions);
 });
