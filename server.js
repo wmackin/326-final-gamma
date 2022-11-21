@@ -8,22 +8,22 @@ const cors = require('cors');
 app.use(cors());
 let fs = require('fs');
 const port = process.env.PORT;     // we will listen on this port
-const { Client } = require('pg');
-const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    }
-  });
+// const { Client } = require('pg');
+// const client = new Client({
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: {
+//         rejectUnauthorized: false
+//     }
+// });
 
-client.connect();
+// client.connect();
 
 
-async function generateDiscussion(name){
+async function generateDiscussion(name) {
     discussion = ``;
     const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${name}';`);
     for (let row of queryResult.rows) {
-        discussion +=  `<div class="container">
+        discussion += `<div class="container">
                             <div class="fs-5">By ${row.username}</div>
                             <div class="fs-3">${row.review}</div>
                         </div>`;
@@ -38,7 +38,7 @@ function dropDownChampions(region) {
         const championsJSON = fs.readFileSync('./data/champions.JSON');
         let champions = JSON.parse(championsJSON);
         champions = champions.filter(x => x['region'].toLowerCase() === region.toLowerCase());
-        for(let i = 0; i < champions.length; i++) {
+        for (let i = 0; i < champions.length; i++) {
             options += `<a class="dropdown-item" href="/champion?name=${champions[i].name}"> ${champions[i].name} </a>`;
         }
     }
@@ -50,7 +50,7 @@ function dropDownRegions() {
     if (fs.existsSync('./data/regions.JSON')) {
         const regionsJSON = fs.readFileSync('./data/regions.JSON');
         let regions = JSON.parse(regionsJSON);
-        for(let i = 0; i < regions.length; i++) {
+        for (let i = 0; i < regions.length; i++) {
             options += `<a class="dropdown-item" href="/region?name=${regions[i].name}"> ${regions[i].name} </a>`;
         }
     }
@@ -83,6 +83,15 @@ app.post('/addPost', (req, res) => {
     const review = req.body.review;
     const likes = 0;
     const time_posted = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const { Client } = require('pg');
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+
+    client.connect();
     client.query(`INSERT INTO reviews (username, lore, review, likes, time_posted) VALUES ('${user}', '${lore}', '${review}', ${likes}, '${time_posted}');`, (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
@@ -202,8 +211,8 @@ app.get('/region', async (req, res) => {
         else {
             const region = regionsFiltered[0];
             const discussion = await generateDiscussion(region.name);
-            let content = 
-           `<!DOCTYPE html>
+            let content =
+                `<!DOCTYPE html>
             <html lang="en">
                 <head>
                     <title>Lore King</title>
@@ -282,89 +291,89 @@ app.get('/region', async (req, res) => {
                     <script src="./champion.js"></script>
                 </body>
             </html>`;
-//                         <div class="text-right">
-//                             <img src="images/championImages/`;
-//             content += champion.image;
-//             content += `" class="img-thumbnail" style="width:960px;height:490px" id="championImage">
-//         </div>
+            //                         <div class="text-right">
+            //                             <img src="images/championImages/`;
+            //             content += champion.image;
+            //             content += `" class="img-thumbnail" style="width:960px;height:490px" id="championImage">
+            //         </div>
 
-//         <div class="row">
-//             <div class="fs-3">
-//             <a href=`
-//             content += champion.link;
-//             content += `>View official lore</a></div>
-//         </div>
-//         <div class="row">
-//             <div class="col-lg-2">
-//                 <div class="list-group">
-//                     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-//                         #General-Region
-//                     </a>
-//                     <a href="#" class="list-group-item list-group-item-action">#Story-Specific</a>
-//                     <a href="#" class="list-group-item list-group-item-action">#Fan-Fic</a>
-//                 </div>
-//         </div> 
-//         </div>
-//         <div class="row">
-//             <div class="col-lg-6">
-//                 <input type="text" class="form-control" placeholder="Type your thoughts here!"
-//                     aria-label="Type your thoughts here!" id="reviewBox">
-//             </div>
-//         </div>
+            //         <div class="row">
+            //             <div class="fs-3">
+            //             <a href=`
+            //             content += champion.link;
+            //             content += `>View official lore</a></div>
+            //         </div>
+            //         <div class="row">
+            //             <div class="col-lg-2">
+            //                 <div class="list-group">
+            //                     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            //                         #General-Region
+            //                     </a>
+            //                     <a href="#" class="list-group-item list-group-item-action">#Story-Specific</a>
+            //                     <a href="#" class="list-group-item list-group-item-action">#Fan-Fic</a>
+            //                 </div>
+            //         </div> 
+            //         </div>
+            //         <div class="row">
+            //             <div class="col-lg-6">
+            //                 <input type="text" class="form-control" placeholder="Type your thoughts here!"
+            //                     aria-label="Type your thoughts here!" id="reviewBox">
+            //             </div>
+            //         </div>
 
-//         <div class="col-12">
-//             <button class="btn btn-primary" type="submit" id='submitPost'>Submit Post</button>
-//             <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
-//         </div>
+            //         <div class="col-12">
+            //             <button class="btn btn-primary" type="submit" id='submitPost'>Submit Post</button>
+            //             <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
+            //         </div>
 
 
-//         <div class="row">
-//             <div class="text-right">
+            //         <div class="row">
+            //             <div class="text-right">
 
-//                 <img src="67-676994_4-stars-four-out-of-five-stars.png" class="rounded"
-//                     style="width: 100px;height: 23px">
-//             </div>
-//         </div>
+            //                 <img src="67-676994_4-stars-four-out-of-five-stars.png" class="rounded"
+            //                     style="width: 100px;height: 23px">
+            //             </div>
+            //         </div>
 
-//         <div class="text-start">
+            //         <div class="text-start">
 
-//         </div>
+            //         </div>
 
-    
 
-// </div>
-// <div class="fs-2">Discussion</div>`;
-//             const client = new Client({
-//                 user: 'postgres',
-//                 host: 'localhost',
-//                 database: 'gamma_user_info',
-//                 password: '1234abcd',
-//                 port: 5432,
-//             });
-//             client.connect();
-//             const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`);
-//             // content += await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`, async (err, result) => {
-//             //     let queryContent = "";
-//             // if (err) throw err;
-//             for (let row of queryResult.rows) {
-//                 content += '<div class="container"><div class="fs-5">By ';
-//                 content += row.username;
-//                 content += '</div><div class="fs-3">';
-//                 content += row.review;
-//                 content += '</div></div>';
-//             }
-//             content += `</div>
-    
-//     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-//         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-//         crossorigin="anonymous"></script>
-//     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-//         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-//         crossorigin="anonymous"></script>
-//         <script src="champion.js"></script>
-//     </body>
-    
-//     </html>`;
+
+            // </div>
+            // <div class="fs-2">Discussion</div>`;
+            //             const client = new Client({
+            //                 user: 'postgres',
+            //                 host: 'localhost',
+            //                 database: 'gamma_user_info',
+            //                 password: '1234abcd',
+            //                 port: 5432,
+            //             });
+            //             client.connect();
+            //             const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`);
+            //             // content += await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`, async (err, result) => {
+            //             //     let queryContent = "";
+            //             // if (err) throw err;
+            //             for (let row of queryResult.rows) {
+            //                 content += '<div class="container"><div class="fs-5">By ';
+            //                 content += row.username;
+            //                 content += '</div><div class="fs-3">';
+            //                 content += row.review;
+            //                 content += '</div></div>';
+            //             }
+            //             content += `</div>
+
+            //     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            //         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            //         crossorigin="anonymous"></script>
+            //     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+            //         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+            //         crossorigin="anonymous"></script>
+            //         <script src="champion.js"></script>
+            //     </body>
+
+            //     </html>`;
             res.send(content);
         }
     }
