@@ -21,6 +21,15 @@ const port = process.env.PORT;     // we will listen on this port
 
 async function generateDiscussion(name) {
     discussion = ``;
+    const { Client } = require('pg');
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+
+    client.connect();
     const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${name}';`);
     for (let row of queryResult.rows) {
         discussion += `<div class="container">
