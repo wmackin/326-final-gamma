@@ -186,7 +186,7 @@ app.get('/champion', async (req, res) => {
         }
     }
     else {
-        res.send([]);
+        res.send("No JSON");
     }
     res.end();
 });
