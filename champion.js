@@ -4,6 +4,7 @@ let user = "test"
 sumbitButton.addEventListener('click', postReview);
 sumbitButton.addEventListener('click', location.reload.bind(window.location));
 async function postReview(){
+    console.log('TEST');
     let data = {
         user: "test",
         review: document.getElementById("reviewBox").value, 
@@ -16,5 +17,6 @@ async function postReview(){
         },
         body: JSON.stringify(data)
     }).catch(err => console.log(err));
+    console.log('test');
     return;
 }
