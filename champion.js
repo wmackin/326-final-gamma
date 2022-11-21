@@ -1,6 +1,20 @@
-document.getElementById('submitPost').addEventListener('click', async () => {
-    const user = "test";
-    const review = document.getElementById("submitPost");
-    await fetch(`/addPost?user=user&review=${review}&lore=${champion.name}`);
-    await fetch(`/champion/${champion.name}`);
-});
+
+const sumbitButton = document.getElementById('sumbitButton');
+let user = "test"
+sumbitButton.addEventListener('click', postReview);
+sumbitButton.addEventListener('click', location.reload.bind(window.location));
+async function postReview(){
+    let data = {
+        user: "test",
+        review: document.getElementById("reviewBox").value, 
+        lore: document.getElementById("name").innerText
+    };
+    await fetch('http://localhost:8000/addPost', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).catch(err => console.log(err));
+    return;
+}
