@@ -10,7 +10,7 @@ async function postReview(){
         review: document.getElementById("reviewBox").value, 
         lore: document.getElementById("name").innerText
     };
-    await fetch('http://localhost:8000/addPost', {
+    await fetch('addPost', {
         method: 'POST',
         mode : 'no-cors',
         headers: {
