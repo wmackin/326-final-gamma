@@ -209,7 +209,7 @@ app.get('/region', async (req, res) => {
                     <div class="container">          
                         <div class="row">
                             <div class="text-right">
-                                <img src=images/${region.image} class="img-thumbnail" style="width:960px;height:490px" id="regionImage">
+                                <img src=/images/${region.image} class="img-thumbnail" style="width:960px;height:490px" id="regionImage">
                             </div>
                         </div>
                         <div class="row">
