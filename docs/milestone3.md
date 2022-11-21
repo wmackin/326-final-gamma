@@ -11,3 +11,4 @@ The database has two tables. One is for login information with username and pass
 
 Steve - implemented the data for region.JSON and champion.JSON, also contributed to rendering pages in the server.js file
 Will - contributed to rendering pages in the server.js file using data retrieved with SQL, set up postgreSQL server on heroku and created tables
+Josh - contributed to rendering pages in the server.js file and also adding further functionality to the buttons. Also tried to clean up codebase especially server.js file. 
