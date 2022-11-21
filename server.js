@@ -42,7 +42,17 @@ function dropDownChampions(region) {
     return options;
 }
 
-const user = 'test56'
+function dropDownRegions() {
+    let options = ``;
+    if (fs.existsSync('./data/regions.json')) {
+        const regionsJSON = fs.readFileSync('./data/regions.json');
+        let regions = JSON.parse(regionsJSON);
+        for(let i = 0; i < regions.length; i++) {
+            options += `<a class="dropdown-item" href="/region?name=${regions[i].name}"> ${regions[i].name} </a>`;
+        }
+    }
+    return options;
+}
 app.use('/', urlencodedParser, express.static('.'));
 
 app.get('/champion.js', (req, res) => {
@@ -123,11 +133,14 @@ app.get('/champion', async (req, res) => {
                                             #Champion-Specific
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            ${dropDownChampions(champion.name)}
+                                            ${dropDownChampions(champion.region)}
                                         </div>
-                                        <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
+                                        <button class="btn btn-secondary dropdown" type="button" id="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             #General-Region
                                         </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            ${dropDownRegions()}
+                                        </div>
                                         <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
                                             #Fan-Fic
                                         <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
@@ -223,9 +236,12 @@ app.get('/region', async (req, res) => {
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                         ${dropDownChampions(region.name)}
                                     </div>
-                                    <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
+                                    <button class="btn btn-secondary dropdown" type="button" id="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         #General-Region
                                     </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        ${dropDownRegions()}
+                                    </div>
                                     <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
                                         #Fan-Fic
                                     <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
