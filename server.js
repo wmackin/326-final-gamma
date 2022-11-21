@@ -10,7 +10,10 @@ let fs = require('fs');
 const port = process.env.PORT;     // we will listen on this port
 const { Client } = require('pg');
 const client = new Client({
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
   });
 
 client.connect();
