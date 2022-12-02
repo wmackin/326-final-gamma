@@ -67,7 +67,7 @@ function dropDownRegions() {
     return options;
 }
 
-app.use(function(req, res, next) {
+app.use(function(req, res, next) {herokoiff
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -88,6 +88,7 @@ app.get('/main.js', (req, res) => {
 // });
 
 app.get('/getRegions', (req, res) => {
+    console.log('found regions')
     const regionsJSON = fs.readFileSync('./data/regions.JSON');
     const regions = JSON.parse(regionsJSON);
     res.send(regions);
