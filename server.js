@@ -112,7 +112,7 @@ app.post('/addPost', (req, res) => {
     });
 
     client.connect();
-    client.query(`INSERT INTO reviews (username, lore, review, likes, time_posted) VALUES ('user', 'Graves', '${review}', 0, '${time_posted}');`, (err, res) => {
+    client.query(`INSERT INTO reviews (username, lore, review, likes, time_posted) VALUES ('user', 'Graves', 'excellent', 0, '${time_posted}');`, (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
             console.log(JSON.stringify(row));
