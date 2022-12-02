@@ -37,6 +37,7 @@ async function generateDiscussion(name) {
                             <div class="fs-3">${row.review}</div>
                         </div>`;
     }
+    client.end();
     return discussion;
 }
 
@@ -117,6 +118,7 @@ app.post('/addPost', (req, res) => {
             console.log(JSON.stringify(row));
         }
     });
+    client.end()
     res.send();
 })
 
