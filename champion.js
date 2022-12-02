@@ -18,6 +18,6 @@ async function postReview(){
         },
         body: JSON.stringify(data)
     }).catch(err => console.log(err));
-    console.log('test');
+    console.log('test confirm');
     return;
 }

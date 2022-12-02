@@ -46,7 +46,6 @@ async function loadRegions() {
             let rowDiv = document.createElement("div");
             rowDiv.classList.add('row');
             for (let i = 0; i < regions.length; i++) {
-                console.log('test');
                 if (i % 4 === 0 && i !== 0) { 
                     gridContainer.appendChild(rowDiv);
                     rowDiv = document.createElement("div");
