@@ -117,7 +117,7 @@ app.post('/addPost', (req, res) => {
             console.log(JSON.stringify(row));
         }
     });
-    res.send();
+    res.send('success');
 })
 
 app.get('/champion', async (req, res) => {
