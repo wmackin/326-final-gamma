@@ -43,7 +43,6 @@ async function generateDiscussion(name) {
 
 
 function dropDownChampions(region) {
-    console.log('testing');
     let options = ``;
     if (fs.existsSync('./data/champions.JSON')) {
         const championsJSON = fs.readFileSync('./data/champions.JSON');
@@ -112,7 +111,7 @@ app.post('/addPost', (req, res) => {
     });
 
     client.connect();
-    client.query(`INSERT INTO reviews (username, lore, review, likes, time_posted) VALUES ('user', 'Graves', 'excellent', 0, '${time_posted}');`, (err, res) => {
+    client.query(`INSERT INTO reviews (username, lore, review, likes, time_posted) VALUES ('user', 'Graves', 'excellent', 0, '1999-01-15 08:00:00');`, (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
             console.log(JSON.stringify(row));
