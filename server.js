@@ -119,7 +119,7 @@ app.post('/addPost', (req, res) => {
         }
     });
     client.end()
-    res.send();
+    res.send('Success!');
 })
 
 app.get('/champion', async (req, res) => {
