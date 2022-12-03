@@ -8,6 +8,7 @@ sumbitButton.addEventListener('click', async  e => {
         //review: document.getElementById("reviewBox").value, 
         //lore: document.getElementById("name").innerText
     };
+    console.log('Well Well Well...Heres your data:');
     console.log(JSON.stringify(data))
     const response = await fetch('/addPost', {
         method: "POST",
