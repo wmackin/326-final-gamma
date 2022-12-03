@@ -5,13 +5,12 @@ sumbitButton.addEventListener('click', async  e => {
     console.log('Event has occured');
     let data = JSON.stringify({
         "user" : "test",
-        //review: document.getElementById("reviewBox").value, 
-        //lore: document.getElementById("name").innerText
+        "review": document.getElementById("reviewBox").value, 
+        "lore": document.getElementById("name").innerText
     });
     console.log(data)
     const response = await fetch('/addPost', {
         method: "POST",
-        mode : "cors",
         headers:  {'Content-Type': 'application/json'},
         body: data,
     })

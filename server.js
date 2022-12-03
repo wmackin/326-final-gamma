@@ -111,7 +111,7 @@ app.post('/addPost', async (req, res) => {
     });
 
     client.connect();
-    const queryResult = await client.query(`INSERT INTO reviews (username,lore,review,likes,time_posted) VALUES ('Josh','Graves','Thanks',0,'2022-12-03 19:33:20.663513')`);
+    const queryResult = await client.query(`INSERT INTO reviews (username,lore,review,likes,time_posted) VALUES ('${user}','${lore}','${review}',${likes},'${time_posted}')`);
     console.log(queryResult);
     client.end();
     res.send(req.body);
