@@ -103,6 +103,7 @@ app.post('/addPost', (req, res) => {
     const likes = 0;
     const time_posted = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const { Client } = require('pg');
+    console.log(process.env.DATABASE_URL)
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
