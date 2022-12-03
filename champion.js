@@ -18,7 +18,7 @@ sumbitButton.addEventListener('click', async  e => {
     }).catch(err => console.log(err));
     console.log('test confirm');
 });
-sumbitButton.addEventListener('click', location.reload.bind(window.location));
+//sumbitButton.addEventListener('click', location.reload.bind(window.location));
 async function postReview(){
     console.log('TEST');
     let data = {
