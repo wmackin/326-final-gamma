@@ -95,7 +95,7 @@ app.get('/getRegions', (req, res) => {
 app.use(express.json());
 app.post('/addPost', async (req, res) => {
     console.log("You are in post");
-    console.log(req.body.lore);
+    console.log(req.body);
     const user = req.body.user;
     const lore = req.body.lore;
     const review = req.body.review;
