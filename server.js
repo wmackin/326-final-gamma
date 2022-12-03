@@ -72,7 +72,7 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.use('/', urlencodedParser, express.static('.'));
+app.use('/', express.static('.'));
 
 app.get('/champion.js', (req, res) => {
     res.send('./champion.js');
