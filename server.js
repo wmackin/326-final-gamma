@@ -111,7 +111,7 @@ app.post('/addPost', (req, res) => {
     });
 
     client.connect();
-    client.query(`SELECT * from REVIEWS;`, (err, res) => {
+    client.query(`SELECT * from reviews;`, (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
             console.log(JSON.stringify(row));
