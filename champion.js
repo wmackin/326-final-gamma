@@ -17,6 +17,6 @@ sumbitButton.addEventListener('click', async  e => {
         body: JSON.stringify(data),
     }).catch(err => console.log(err));
     console.log('Event Done');
-    location.reload.bind(window.location)
+    location.reload(); 
 });
 //sumbitButton.addEventListener('click', location.reload.bind(window.location));

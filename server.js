@@ -17,7 +17,7 @@ const port = process.env.PORT;     // we will listen on this port
 
 // client.connect();
 
-
+app.use(express.urlencoded({extended:false}));
 async function generateDiscussion(name) {
     discussion = ``;
     const { Client } = require('pg');
