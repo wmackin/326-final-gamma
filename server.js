@@ -94,7 +94,7 @@ app.get('/getRegions', (req, res) => {
     res.send(regions);
 });
 
-app.post('/addPost', (req, res) => {
+app.post('/addPost', async (req, res) => {
     console.log("You are in post");
     console.log(req.body);
     const user = req.body.user;
@@ -112,7 +112,7 @@ app.post('/addPost', (req, res) => {
     });
 
     client.connect();
-    client.query(`SELECT * FROM reviews WHERE lore = 'Fizz';`, (err, res) => {
+    await client.query(`SELECT * FROM reviews WHERE lore = 'Fizz';`, (err, res) => {
         console.log(err);
         console.log(res);
         //if (err) throw err;
