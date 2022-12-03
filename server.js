@@ -112,7 +112,7 @@ app.post('/addPost', (req, res) => {
 
     client.connect();
     client.query(`SELECT * from reviews;`, (err, res) => {
-        if (err) throw err;
+        //if (err) throw err;
         for (let row of res.rows) {
             console.log(JSON.stringify(row));
         }
