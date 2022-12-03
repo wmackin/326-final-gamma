@@ -3,7 +3,6 @@ const app = express(); // this is the "app"
 const bodyParser = require('body-parser');
 const path = require('path');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 let fs = require('fs');
@@ -93,7 +92,7 @@ app.get('/getRegions', (req, res) => {
     const regions = JSON.parse(regionsJSON);
     res.send(regions);
 });
-
+app.use(express.json());
 app.post('/addPost', async (req, res) => {
     console.log("You are in post");
     console.log(req.body.lore);
