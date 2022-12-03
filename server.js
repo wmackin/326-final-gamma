@@ -269,7 +269,7 @@ app.get('/region', async (req, res) => {
                                     <button class="btn btn-secondary dropdown" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         #Champion-Specific
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         ${dropDownChampions(region.name)}
                                     </div>
                                     <button class="btn btn-secondary dropdown" type="button" id="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
