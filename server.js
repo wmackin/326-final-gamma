@@ -96,7 +96,7 @@ app.get('/getRegions', (req, res) => {
 
 app.post('/addPost', async (req, res) => {
     console.log("You are in post");
-    console.log(req.body);
+    console.log(req.body.lore);
     const user = req.body.user;
     const lore = req.body.lore;
     const review = req.body.review;
@@ -112,7 +112,7 @@ app.post('/addPost', async (req, res) => {
     });
 
     client.connect();
-    const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = 'Fizz';`);
+    const queryResult = await client.query(`INSERT INTO reviews (username,lore,review,likes,time_posted) VALUES ('Josh','Graves','Thanks',0,'2022-12-03 19:33:20.663513')`);
     console.log(queryResult);
     client.end();
     res.send('Success!');
