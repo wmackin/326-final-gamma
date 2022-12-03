@@ -13,9 +13,7 @@ sumbitButton.addEventListener('click', async  e => {
     const response = await fetch('/addPost', {
         method: "POST",
         mode : "no-cors",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers:  {'Content-Type': 'application/json;charset=utf-8'},
         body: JSON.stringify(data),
     })
     console.log(response);
