@@ -95,8 +95,7 @@ app.get('/getRegions', (req, res) => {
 });
 
 app.post('/addPost', (req, res) => {
-    window.print()
-    console.log("hello");
+    console.log("You are in post");
     console.log(req.body);
     const user = req.body.user;
     const lore = req.body.lore;

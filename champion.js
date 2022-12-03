@@ -2,7 +2,7 @@
 const sumbitButton = document.getElementById('sumbitButton');
 let user = "test"
 sumbitButton.addEventListener('click', async  e => {
-    console.log('TEST');
+    console.log('Event has occured');
     let data = {
         user: "test",
         review: document.getElementById("reviewBox").value, 
@@ -16,7 +16,7 @@ sumbitButton.addEventListener('click', async  e => {
         },
         body: JSON.stringify(data)
     }).catch(err => console.log(err));
-    console.log('test confirm');
+    console.log('Event Done');
 });
 //sumbitButton.addEventListener('click', location.reload.bind(window.location));
 async function postReview(){
