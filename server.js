@@ -1,8 +1,8 @@
 const express = require('express'); // express itself w/ CommonJS
 const app = express(); // this is the "app"
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const path = require('path');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+//const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const cors = require('cors');
 app.use(cors());
 let fs = require('fs');
