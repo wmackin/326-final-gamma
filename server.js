@@ -112,15 +112,9 @@ app.post('/addPost', async (req, res) => {
     });
 
     client.connect();
-    await client.query(`SELECT * FROM reviews WHERE lore = 'Fizz';`, (err, res) => {
-        console.log(err);
-        console.log(res);
-        //if (err) throw err;
-        //for (let row of res.rows) {
-            console.log(JSON.stringify(row));
-        //}
-    });
-    client.end()
+    const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = 'Fizz';`);
+    console.log(queryResult);
+    client.end();
     res.send('Success!');
 })
 
