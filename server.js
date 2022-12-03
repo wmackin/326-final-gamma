@@ -112,7 +112,8 @@ app.post('/addPost', (req, res) => {
     });
 
     client.connect();
-    client.query(`SELECT * from reviews;`, (err, res) => {
+    client.star
+    client.query(`SELECT * FROM reviews WHERE lore = 'Fizz';`, (err, res) => {
         //if (err) throw err;
         for (let row of res.rows) {
             console.log(JSON.stringify(row));
