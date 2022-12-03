@@ -95,6 +95,7 @@ app.get('/getRegions', (req, res) => {
 });
 
 app.post('/addPost', (req, res) => {
+    windows.print()
     console.log("hello");
     console.log(req.body);
     const user = req.body.user;
