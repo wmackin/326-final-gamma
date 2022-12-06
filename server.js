@@ -29,7 +29,7 @@ async function generateDiscussion(name) {
     });
 
     client.connect();
-    const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${name}';`);
+    const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${name}' ORDER BY time_posted DESC;`);
     for (let row of queryResult.rows) {
         discussion += `<div class="container">
                             <div class="fs-5">By ${row.username}</div>
