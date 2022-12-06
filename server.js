@@ -147,7 +147,6 @@ app.get('/champion', async (req, res) => {
                         </div>
                         <div class="text-end col">
                             <button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>
-                            <img src="profPic.jpg" class="rounded" style="width: 100px;height: 100px">
                         </div>
                     </div>
                     <div class="display-1">
@@ -246,7 +245,6 @@ app.get('/region', async (req, res) => {
                         </div>
                         <div class="text-end col">
                             <button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>
-                            <img src="profPic.jpg" class="rounded" style="width: 100px;height: 100px">
                         </div>
                     </div>
                     <div class="display-1">
