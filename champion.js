@@ -17,4 +17,9 @@ sumbitButton.addEventListener('click', async  e => {
     console.log(response);
     location.reload(); 
 });
+
+document.getElementById("login-button").addEventListener("click", async () => {
+    await fetch("/login");
+    return;
+});
 //sumbitButton.addEventListener('click', location.reload.bind(window.location));
