@@ -16,4 +16,8 @@ signupButton.addEventListener('click', async  e => {
         body: data,
     })
     console.log(response);
+    if (response.ok) {
+        const request = response.json();
+        console.log(request);
+    }
 });
