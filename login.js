@@ -12,11 +12,9 @@ loginButton.addEventListener('click', async  e => {
     })
     console.log(response);
     if (response.ok) {
-        const request = await response.json()
-        console.log(request);
-        if (request === '1' || request === 1) {
+        if (response.redirected) {
             console.log('true');
-            window.location.assign('/user');
+            window.location.assign(response.url);
         }
     }
 });
