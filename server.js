@@ -204,6 +204,7 @@ app.post('/signup', async (req, res) => {
          const rank = req.body.rank;        
          console.log(typeof password)
 	     if (addUser(username, password, champion, region, position, story, rank)) {
+            console.log("YAY")
             res.redirect('/login');
 	     } 
          else {
