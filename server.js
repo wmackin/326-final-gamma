@@ -154,6 +154,16 @@ function dropDownRegions() {
     return options;
 }
 
+function checkLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+	// If we are authenticated, run the next route.
+	next();
+    } else {
+	// Otherwise, redirect to the login page.
+	res.redirect('/login');
+    }
+}
+
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -173,6 +183,52 @@ app.post('/login',
         'successRedirect' : '/private',   // when we login, go to /private 
         'failureRedirect' : '/login'      // otherwise, back to login
     }));
+
+app.get('/login',
+    (req, res) => res.sendFile('./login.html',
+                    { 'root' : __dirname }));
+
+app.get('/logout', (req, res) => {
+    req.logout(); // Logs us out!
+    res.redirect('/login'); // back to login
+});
+
+app.post('/register',
+	 (req, res) => {
+	     const username = req.body['username'];
+	     const password = req.body['password'];
+	     if (addUser(username, password)) {
+		 res.redirect('/login');
+	     } else {
+		 res.redirect('/register');
+	     }
+	 });
+
+app.get('/register',
+	(req, res) => res.sendFile('./signup.html',
+				   { 'root' : __dirname }));
+
+// Private data
+app.get('/user',
+	checkLoggedIn, // If we are logged in (notice the comma!)...
+	(req, res) => {             // Go to the user's page.
+	    res.redirect('/private/' + req.user);
+	});
+
+// A dummy page for the user.
+app.get('/private/:userID/',
+	checkLoggedIn, // We also protect this route: authenticated...
+	(req, res) => {
+	    // Verify this is the right user.
+	    if (req.params.userID === req.user) {
+		res.writeHead(200, {"Content-Type" : "text/html"});
+		res.write('<H1>HELLO ' + req.params.userID + "</H1>");
+		res.write('<br/><a href="/logout">click here to logout</a>');
+		res.end();
+	    } else {
+		res.redirect('/private/');
+	    }
+	})
 
 app.get('/champion.js', (req, res) => {
     res.send('./champion.js');
@@ -247,6 +303,7 @@ app.get('/champion', async (req, res) => {
                         </div>
                         <div class="text-end col">
                             <button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>
+                            <img src="profPic.jpg" class="rounded" style="width: 100px;height: 100px">
                         </div>
                     </div>
                     <div class="display-1">
@@ -345,6 +402,7 @@ app.get('/region', async (req, res) => {
                         </div>
                         <div class="text-end col">
                             <button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>
+                            <img src="profPic.jpg" class="rounded" style="width: 100px;height: 100px">
                         </div>
                     </div>
                     <div class="display-1">
