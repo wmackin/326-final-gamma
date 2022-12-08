@@ -184,7 +184,7 @@ app.post('/login',
         'failureRedirect' : '/login'      // otherwise, back to login
     }));
 
-app.get('/login2',
+app.get('/login',
 	(req, res) => res.sendFile('/login.html',
 				   { 'root' : "." }));
 
@@ -208,7 +208,7 @@ app.post('/signup',  (req, res) => {
          console.log(!users[username])
 	     if (lol) {
             console.log("xxx")
-            res.redirect(307, '/login2');
+            res.redirect(307, '/login');
 	     } 
          else {
 		    res.redirect(202, '/signup');
