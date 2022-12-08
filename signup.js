@@ -1,3 +1,4 @@
+
 let signupButton = document.getElementById('signupButton');
 signupButton.addEventListener('click', async  e => {
     console.log('Event has occured');

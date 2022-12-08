@@ -1,6 +1,6 @@
 
 const sumbitButton = document.getElementById('sumbitButton');
-let user = "test"
+let user = "test";
 sumbitButton.addEventListener('click', async  e => {
     console.log('Event has occured');
     let data = JSON.stringify({
