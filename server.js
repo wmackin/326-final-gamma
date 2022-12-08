@@ -197,11 +197,12 @@ app.post('/signup', async (req, res) => {
          console.log(req.body)
 	     const username = req.body['username'];
 	     const password = req.body['password'];
-         const champion = req.body['champion']
-         const region = req.body['region']
-         const position = req.body['position']
-         const story = req.body['story']
-         const rank = req.body['rank']
+         const champion = req.body['champion'];
+         const region = req.body['region'];
+         const position = req.body['position'];
+         const story = req.body['story'];
+         const rank = req.body['rank'];
+         console.log(typeof password)
 	     if (addUser(username, password, champion, region, position, story, rank)) {
             res.redirect('/login');
 	     } 
