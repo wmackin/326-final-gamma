@@ -61,3 +61,4 @@ class MiniCrypt {
   };
 }
 
+module.exports = { MiniCrypt };
