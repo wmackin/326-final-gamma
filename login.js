@@ -1,14 +1,14 @@
-document.getElementById("loginButton").addEventListener("click", async () => {
-    response = await fetch('./login', {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'}
+const loginButton = document.getElementById('signupButton');
+loginButton.addEventListener('click', async  e => {
+    console.log('Event has occured');
+    let data = JSON.stringify({
+        "user" : document.getElementById("username").value,
+        "password": document.getElementById("password").value, 
     });
-    if (response.ok) {
-        request = response.json();
-        request.then(request => console.log(request));
-        window.location.assign("./index.html");
-    }
-});
-document.getElementById("signupButton").addEventListener("click", async () => {
-    window.location.assign("./signup.html");
+    const response = await fetch('/login', {
+        method: "POST",
+        headers:  {'Content-Type': 'application/json'},
+        body: data,
+    })
+    console.log(response);
 });
