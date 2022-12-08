@@ -16,4 +16,6 @@ sumbitButton.addEventListener('click', async  e => {
         headers:  {'Content-Type': 'application/json'},
         body: data,
     })
+    console.log(response);
+    location.reload(); 
 });
