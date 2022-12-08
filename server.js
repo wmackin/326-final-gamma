@@ -193,7 +193,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/login'); // back to login
 });
 
-app.post('/signup',  (req, res) => {
+app.post('/signup',  async (req, res) => {
          console.log(req.body)
 	     const username = req.body.username;
 	     const password = req.body.password;
