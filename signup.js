@@ -19,5 +19,8 @@ signupButton.addEventListener('click', async  e => {
     if (response.ok) {
         const request = await response.json();
         console.log(request);
+        if (request === '1') {
+            window.location.assign('/login');
+        }
     }
 });
