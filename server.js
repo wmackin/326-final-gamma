@@ -208,7 +208,7 @@ app.post('/signup',  (req, res) => {
          console.log(!users[username])
 	     if (lol) {
             console.log("YAY")
-            res.redirect(200, '/region?name=Bilgewater');
+            res.redirect(307, '/region?name=Bilgewater');
 	     } 
          else {
 		    res.redirect(202, '/signup');
