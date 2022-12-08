@@ -208,8 +208,7 @@ app.post('/signup',  (req, res) => {
          console.log(!users[username])
 	     if (lol) {
             console.log("xxx")
-            res.redirect('/login');
-            window.location.assign("account.html");
+            res.redirect(307, '/login');
 	     } 
          else {
 		    res.redirect(202, '/signup');
