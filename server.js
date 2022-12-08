@@ -194,6 +194,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
+         console.log(req.body)
 	     const username = req.body['username'];
 	     const password = req.body['password'];
          const champion = req.body['champion']
