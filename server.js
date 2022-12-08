@@ -113,7 +113,7 @@ function validatePassword(name, pwd) {
 }
 
 function addUser(name, pwd, champion, region, position, story, rank) {
-    if (!findUser(name)) {
+    if (findUser(name)) {
         return false;
     }
     const [salt, hash] = mc.hash(pwd);
