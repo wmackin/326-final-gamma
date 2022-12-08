@@ -21,7 +21,7 @@ const port = process.env.PORT;     // we will listen on this port
 // client.connect();
 const minicrypt = require('./miniCrypt');
 const mc = new minicrypt();
-
+app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 async function generateDiscussion(name) {
     discussion = ``;
@@ -195,13 +195,13 @@ app.get('/logout', (req, res) => {
 
 app.post('/signup', async (req, res) => {
          console.log(req.body)
-	     const username = req.body['username'];
-	     const password = req.body['password'];
-         const champion = req.body['champion'];
-         const region = req.body['region'];
-         const position = req.body['position'];
-         const story = req.body['story'];
-         const rank = req.body['rank'];
+	     const username = req.body.username;
+	     const password = req.body.password;
+         const champion = req.body.champion;
+         const region = req.body.region;
+         const position = req.body.position;
+         const story = req.body.story;
+         const rank = req.body.rank;        
          console.log(typeof password)
 	     if (addUser(username, password, champion, region, position, story, rank)) {
             res.redirect('/login');
@@ -255,7 +255,7 @@ app.get('/getRegions', (req, res) => {
     const regions = JSON.parse(regionsJSON);
     res.send(regions);
 });
-app.use(express.json());
+
 app.post('/addPost', async (req, res) => {
     console.log("You are in post");
     console.log(req.body);

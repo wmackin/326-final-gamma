@@ -10,7 +10,6 @@ signupButton.addEventListener('click', async  e => {
         "story": document.getElementById("story").value,
         "rank": document.getElementById("rank").value,
     });
-    console.log(data)
     const response = await fetch('/signup', {
         method: "POST",
         headers:  {'Content-Type': 'application/json'},
