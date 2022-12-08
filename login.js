@@ -20,3 +20,7 @@ loginButton.addEventListener('click', async  e => {
         }
     }
 });
+const signupButton = document.getElementById('signupButton');
+signupButton.addEventListener('click', async  e => {
+    window.location.assign('/signup');
+});
