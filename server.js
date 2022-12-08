@@ -185,7 +185,8 @@ app.post('/login',
     }));
 
 app.get('/login',
-	(req, res) => res.sendFile('/login.html'));
+	(req, res) => res.sendFile('/login.html',
+				   { 'root' : "." }));
 
 app.get('/logout', (req, res) => {
     req.logout(); // Logs us out!
@@ -218,8 +219,7 @@ app.post('/signup',  (req, res) => {
 	 });
 
 app.get('/signup', (req, res) => {
-    res.sendFile(path.join('./signup.html'));
-});
+    res.sendFile(path.join('/signup.html',  'root' : "." });
 
 // Private data
 app.get('/user',
