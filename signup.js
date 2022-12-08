@@ -1,5 +1,5 @@
 const signupButton = document.getElementById('signupButton');
-signupButton.addEventListener('click', async  e => {
+signupButton.addEventListener('click',   e => {
     console.log('Event has occured');
     let data = JSON.stringify({
         "user" : document.getElementById("username").value,
@@ -10,7 +10,7 @@ signupButton.addEventListener('click', async  e => {
         "story": document.getElementById("story").value,
         "rank": document.getElementById("rank").value,
     });
-    const response = await fetch('/signup', {
+    const response =  fetch('/signup', {
         method: "POST",
         headers:  {'Content-Type': 'application/json'},
         body: data,
