@@ -180,7 +180,7 @@ app.get('/',
 
 app.post('/login',
     passport.authenticate('local', {// when we login, go to /private 
-        'failureRedirect' : '/login'      // otherwise, back to login
+        'failureRedirect' : '/signup'      // otherwise, back to login
     }), (req, res)=> {res.send("1");});
 
 app.get('/login',
