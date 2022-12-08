@@ -34,7 +34,7 @@ async function generateDiscussion(name) {
     });
 
     client.connect();
-    const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${name}';`);
+    const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${name}' ORDER BY time_posted DESC;`);
     for (let row of queryResult.rows) {
         discussion += `<div class="container">
                             <div class="fs-5">By ${row.username}</div>
@@ -247,7 +247,6 @@ app.get('/champion', async (req, res) => {
                         </div>
                         <div class="text-end col">
                             <button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>
-                            <img src="profPic.jpg" class="rounded" style="width: 100px;height: 100px">
                         </div>
                     </div>
                     <div class="display-1">
@@ -346,7 +345,6 @@ app.get('/region', async (req, res) => {
                         </div>
                         <div class="text-end col">
                             <button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>
-                            <img src="profPic.jpg" class="rounded" style="width: 100px;height: 100px">
                         </div>
                     </div>
                     <div class="display-1">
