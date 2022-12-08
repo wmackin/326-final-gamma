@@ -180,7 +180,7 @@ app.get('/',
 
 app.post('/login',
     passport.authenticate('local' , {     // use username/password authentication
-        'successRedirect' : '/private',   // when we login, go to /private 
+        'successRedirect' : '/user',   // when we login, go to /private 
         'failureRedirect' : '/login'      // otherwise, back to login
     }));
 
