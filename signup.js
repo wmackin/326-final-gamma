@@ -15,7 +15,7 @@ signupButton.addEventListener('click', async  e => {
         headers:  {'Content-Type': 'application/json'},
         body: data,
     })
-    console.log(response);
+    /*console.log(response);
     if (response.ok) {
         const request = await response.json();
         console.log(request);
@@ -23,5 +23,5 @@ signupButton.addEventListener('click', async  e => {
             console.log('true');
             window.location.assign('/login');
         }
-    }
+    }*/
 });
