@@ -208,7 +208,7 @@ app.post('/signup', async (req, res) => {
          console.log(!users[username])
 	     if (lol) {
             console.log("YAY")
-            res.redirect(200, '/login');
+            res.redirect(200, '/region?name=Bilgewater');
 	     } 
          else {
 		    res.redirect(202, '/signup');
@@ -237,7 +237,7 @@ app.get('/user/:userID/',
 		res.write('<br/><a href="/logout">click here to logout</a>');
 		res.end();
 	    } else {
-		res.redirect('/private/');
+		res.redirect('/user/');
 	    }
 	})
 
