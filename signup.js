@@ -16,5 +16,4 @@ signupButton.addEventListener('click', async  e => {
         body: data,
     })
     console.log(response);
-    location.reload(); 
 });
