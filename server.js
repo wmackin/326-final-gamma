@@ -209,10 +209,12 @@ app.post('/signup',  (req, res) => {
 	     if (lol) {
             console.log("xxx")
             //let url = new URL(url+"/login");
-            res.redirect('/login');
+            res.send("1")
+            //res.redirect('/login');
 	     } 
          else {
-		    res.redirect('/signup');
+            res.send("-1")
+		    //res.redirect('/signup');
 	     }
 	 });
 
