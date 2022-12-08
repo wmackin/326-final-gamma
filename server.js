@@ -179,9 +179,10 @@ app.get('/',
 	});
 
 app.post('/login',
-    passport.authenticate('local', {// when we login, go to /private 
-        'failureRedirect' : 'https://whispering-woodland-38762.herokuapp.com/signup'      // otherwise, back to login
-    }), (req, res)=> {res.send("1");});
+    passport.authenticate('local', {
+        'successRedirect' : '/private', // when we login, go to /private 
+        'failureRedirect' : '/signup'      // otherwise, back to login
+    });
 
 app.get('/login',
 	(req, res) => res.sendFile('/login.html',
