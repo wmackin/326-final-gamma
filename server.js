@@ -179,10 +179,9 @@ app.get('/',
 	});
 
 app.post('/login',
-    passport.authenticate('local' , {     // use username/password authentication
-        'successRedirect' : '/user',   // when we login, go to /private 
+    passport.authenticate('local' , {// when we login, go to /private 
         'failureRedirect' : '/login'      // otherwise, back to login
-    }));
+    }, res.send("1")));
 
 app.get('/login',
 	(req, res) => res.sendFile('/login.html',
