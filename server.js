@@ -112,12 +112,12 @@ function validatePassword(name, pwd) {
     return false;
 }
 
-function addUser(name, pwd) {
+function addUser(name, pwd, champion, region, position, story, rank) {
     if (findUser(name)) {
         return false;
     }
     const [salt, hash] = mc.hash(pwd);
-    users[name] = [salt, hash];
+    users[name] = [salt, hash, champion, region, position, story, rank];
     const content = JSON.stringify(users);
     fs.writeFile('./data/users.JSON', content, err => {
         if (err) {
@@ -184,39 +184,45 @@ app.post('/login',
         'failureRedirect' : '/login'      // otherwise, back to login
     }));
 
-app.get('/login',
-    (req, res) => res.sendFile('./login.html',
-                    { 'root' : __dirname }));
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '/login.html'));
+});
 
 app.get('/logout', (req, res) => {
     req.logout(); // Logs us out!
     res.redirect('/login'); // back to login
 });
 
-app.post('/register',
+app.post('/signup',
 	 (req, res) => {
 	     const username = req.body['username'];
 	     const password = req.body['password'];
-	     if (addUser(username, password)) {
-		 res.redirect('/login');
-	     } else {
-		 res.redirect('/register');
+         const champion = req.body['champion']
+         const region = req.body['region']
+         const position = req.body['position']
+         const story = req.body['story']
+         const rank = req.body['rank']
+	     if (addUser(username, password, champion, region, position, story, rank)) {
+            res.redirect('/login');
+	     } 
+         else {
+		    res.redirect('/signup');
 	     }
 	 });
 
-app.get('/register',
-	(req, res) => res.sendFile('./signup.html',
-				   { 'root' : __dirname }));
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname, '/signup.html'));
+});
 
 // Private data
 app.get('/user',
 	checkLoggedIn, // If we are logged in (notice the comma!)...
 	(req, res) => {             // Go to the user's page.
-	    res.redirect('/private/' + req.user);
+	    res.redirect('/user/' + req.user);
 	});
 
 // A dummy page for the user.
-app.get('/private/:userID/',
+app.get('/user/:userID/',
 	checkLoggedIn, // We also protect this route: authenticated...
 	(req, res) => {
 	    // Verify this is the right user.
@@ -555,12 +561,8 @@ app.get('/region', async (req, res) => {
     res.end();
 });
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '/login.html'));
-});
 
-app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, '/signup.html'));
-});
+
+
 
 app.listen(process.env.PORT, () => { });
