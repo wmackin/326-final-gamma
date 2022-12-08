@@ -16,6 +16,7 @@ signupButton.addEventListener('click', async  e => {
         headers:  {'Content-Type': 'application/json'},
         body: data,
     });
+    console.log(response)
     if (response.ok) {
         const request = await response.json();
         console.log(request);

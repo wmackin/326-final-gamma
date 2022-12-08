@@ -12,7 +12,7 @@ loginButton.addEventListener('click', async  e => {
     })
     console.log(response);
     if (response.ok) {
-        const request = await response
+        const request = await response.json()
         console.log(request);
         if (request === '1' || request === 1) {
             console.log('true');
