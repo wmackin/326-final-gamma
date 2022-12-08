@@ -16,13 +16,11 @@ signupButton.addEventListener('click', async  e => {
         headers:  {'Content-Type': 'application/json'},
         body: data,
     });
-    console.log(response)
+    console.log(response);
     if (response.ok) {
-        const request = await response.json();
-        console.log(request);
-        if (request === '1' || request === 1) {
+        if (response.redirected) {
             console.log('true');
-            window.location.assign('/login');
+            window.location.assign(response.url);
         }
     }
 });
