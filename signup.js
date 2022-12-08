@@ -12,6 +12,7 @@ signupButton.addEventListener('click', async  e => {
     });
     const response = await fetch('/signup', {
         method: "POST",
+        redirect: 'follow',
         headers:  {'Content-Type': 'application/json'},
         body: data,
     })
