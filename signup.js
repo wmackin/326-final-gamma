@@ -16,14 +16,12 @@ signupButton.addEventListener('click', async  e => {
         headers:  {'Content-Type': 'application/json'},
         body: data,
     });
-    const request = await response.json();
-    console.log(request);
-    /*if (response.ok) {
+    if (response.ok) {
         const request = await response.json();
         console.log(request);
         if (request === '1' || request === 1) {
             console.log('true');
             window.location.assign('/login');
         }
-    }*/
+    }
 });
