@@ -15,9 +15,9 @@ signupButton.addEventListener('click', async  e => {
         redirect: 'follow',
         headers:  {'Content-Type': 'application/json'},
         body: data,
-    })
-    const request = await response;
-    console.log(response.json());
+    });
+    const request = await response.json();
+    console.log(request);
     /*if (response.ok) {
         const request = await response.json();
         console.log(request);
