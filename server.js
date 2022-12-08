@@ -201,14 +201,14 @@ app.post('/signup',  (req, res) => {
          const region = req.body.region;
          const position = req.body.position;
          const story = req.body.story;
-         const rank = req.body.rank;        
+         const rank = req.body.rank;
          console.log(typeof password);
          const lol = addUser(username, password, champion, region, position, story, rank);
          console.log(lol)
          console.log(!users[username])
 	     if (lol) {
             console.log("xxx")
-            res.redirect(307, '/login');
+            res.redirect(307, '');
 	     } 
          else {
 		    res.redirect(202, '/signup');
