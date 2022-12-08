@@ -202,13 +202,15 @@ app.post('/signup', async (req, res) => {
          const position = req.body.position;
          const story = req.body.story;
          const rank = req.body.rank;        
-         console.log(typeof password)
+         console.log(typeof password);
+         const lol = addUser(username, password, champion, region, position, story, rank);
+         console.log(lol)
 	     if (addUser(username, password, champion, region, position, story, rank)) {
             console.log("YAY")
-            res.redirect('/login');
+            res.redirect(200, '/login');
 	     } 
          else {
-		    res.redirect('/signup');
+		    res.redirect(202, '/signup');
 	     }
 	 });
 
