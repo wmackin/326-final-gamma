@@ -186,7 +186,7 @@ app.post('/login',
 
 app.get('/login',
 	(req, res) => res.sendFile('/login.html',
-				   { 'root' : "" }));
+				   { 'root' : "." }));
 
 app.get('/logout', (req, res) => {
     req.logout(); // Logs us out!
