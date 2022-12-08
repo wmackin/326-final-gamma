@@ -184,9 +184,9 @@ app.post('/login',
         'failureRedirect' : '/login'      // otherwise, back to login
     }));
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '/login.html'));
-});
+app.get('/login',
+	(req, res) => res.sendFile('html/login.html',
+				   { 'root' : __dirname }));
 
 app.get('/logout', (req, res) => {
     req.logout(); // Logs us out!
