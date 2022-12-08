@@ -61,4 +61,3 @@ class MiniCrypt {
   };
 }
 
-export { MiniCrypt };
