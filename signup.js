@@ -20,6 +20,7 @@ signupButton.addEventListener('click', async  e => {
         const request = await response.json();
         console.log(request);
         if (request === '1') {
+            console.log('true');
             window.location.assign('/login');
         }
     }
