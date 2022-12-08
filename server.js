@@ -1,4 +1,6 @@
 const express = require('express'); // express itself w/ CommonJS
+const expressSession = require('express-session');  // for managing session state
+const passport = require('passport');               // handles authentication
 const app = express(); // this is the "app"
 //const bodyParser = require('body-parser');
 const path = require('path');
@@ -6,6 +8,7 @@ const path = require('path');
 const cors = require('cors');
 app.use(cors());
 let fs = require('fs');
+const LocalStrategy = require('passport-local').Strategy;
 const port = process.env.PORT;     // we will listen on this port
 // const { Client } = require('pg');
 // const client = new Client({
@@ -16,6 +19,8 @@ const port = process.env.PORT;     // we will listen on this port
 // });
 
 // client.connect();
+const minicrypt = require('./miniCrypt');
+const mc = new minicrypt();
 
 app.use(express.urlencoded({extended:false}));
 async function generateDiscussion(name) {
@@ -38,6 +43,89 @@ async function generateDiscussion(name) {
     }
     client.end();
     return discussion;
+}
+
+const session = {
+    secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
+    resave : false,
+    saveUninitialized: false
+};
+const strategy = new LocalStrategy(
+    async (username, password, done) => {
+	if (!findUser(username)) {
+	    // no such user
+	    await new Promise((r) => setTimeout(r, 2000)); // two second delay
+	    return done(null, false, { 'message' : 'Wrong username' });
+	}
+	if (!validatePassword(username, password)) {
+	    // invalid password
+	    // should disable logins after N messages
+	    // delay return to rate-limit brute-force attacks
+	    await new Promise((r) => setTimeout(r, 2000)); // two second delay
+	    return done(null, false, { 'message' : 'Wrong password' });
+	}
+	// success!
+	// should create a user object here, associated with a unique identifier
+	return done(null, username);
+    });
+
+app.use(expressSession(session));
+passport.use(strategy);
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+// Convert a unique identifier to a user object.
+passport.deserializeUser((uid, done) => {
+    done(null, uid);
+});
+
+function getUsers(){
+    let users = {};
+    if (fs.existsSync('./data/users.JSON')) {
+        const usersJSON = fs.readFileSync('./data/users.JSON');
+        users = JSON.parse(usersJSON);
+    }
+    return users;
+}
+let users = getUsers(); // name : [salt, hash]'
+
+function findUser(username) {
+    if (!users[username]) {
+        return false;
+    } 
+    else {
+        return true;
+    }
+}
+
+// Returns true iff the password is the one we have stored.
+function validatePassword(name, pwd) {
+    if (!findUser(name)) {
+        return false;
+    }
+    if (mc.check(pwd, users[name][0], users[name][1])) {
+        return true;
+    }
+    return false;
+}
+
+function addUser(name, pwd) {
+    if (findUser(name)) {
+        return false;
+    }
+    const [salt, hash] = mc.hash(pwd);
+    users[name] = [salt, hash];
+    const content = JSON.stringify(users);
+    fs.writeFile('./data/users.JSON', content, err => {
+        if (err) {
+          console.error(err);
+        }
+        // file written successfully
+    });
+    return true;
 }
 
 
@@ -73,6 +161,18 @@ app.use(function(req, res, next) {
   });
 
 app.use('/', express.static('.'));
+
+app.get('/',
+    checkLoggedIn,
+	(req, res) => {
+	    res.send("hello world");
+	});
+
+app.post('/login',
+    passport.authenticate('local' , {     // use username/password authentication
+        'successRedirect' : '/private',   // when we login, go to /private 
+        'failureRedirect' : '/login'      // otherwise, back to login
+    }));
 
 app.get('/champion.js', (req, res) => {
     res.send('./champion.js');
