@@ -22,7 +22,7 @@ const port = process.env.PORT;     // we will listen on this port
 const minicrypt = require('./miniCrypt');
 const mc = new minicrypt();
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 async function generateDiscussion(name) {
     discussion = ``;
     const { Client } = require('pg');
@@ -170,7 +170,7 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.use('/', express.static('.'));
+app.use(express.static('.'));
 
 app.get('/',
     checkLoggedIn,
