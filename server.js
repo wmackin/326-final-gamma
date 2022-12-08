@@ -218,8 +218,7 @@ app.post('/signup',  (req, res) => {
 	     }
 	 });
 
-app.get('/signup', (req, res) => {
-    res.sendFile(path.join('/signup.html',  'root' : "." });
+app.get('/signup', (req, res) => res.sendFile(path.join('/signup.html',  {'root' : "."})));
 
 // Private data
 app.get('/user',
