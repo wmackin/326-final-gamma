@@ -181,7 +181,7 @@ app.get('/',
 app.post('/login',
     passport.authenticate('local' , {// when we login, go to /private 
         'failureRedirect' : '/login'      // otherwise, back to login
-    },function(req, res) { res.send("1")}));
+    }), function(req, res) {res.send("1");});
 
 app.get('/login',
 	(req, res) => res.sendFile('/login.html',
@@ -203,16 +203,16 @@ app.post('/signup',  (req, res) => {
          const rank = req.body.rank;
          console.log(typeof password);
          const lol = addUser(username, password, champion, region, position, story, rank);
-         console.log(lol)
-         console.log(!users[username])
+         console.log(lol);
+         console.log(!users[username]);
 	     if (lol) {
-            console.log("xxx")
+            console.log("xxx");
             //let url = new URL(url+"/login");
-            res.send("1")
+            res.send("1");
             //res.redirect('/login');
 	     } 
          else {
-            res.send("-1")
+            res.send("-1");
 		    //res.redirect('/signup');
 	     }
 	 });
