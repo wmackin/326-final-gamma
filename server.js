@@ -211,6 +211,7 @@ app.post('/signup',  async (req, res) => {
             //let url = new URL(url+"/login");
             //res.send("1");
             res.redirect('/login');
+            res.send();
 	     } 
          else {
             //res.send("-1");
