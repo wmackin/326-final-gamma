@@ -93,7 +93,7 @@ async function getUsers(){
         }
     });
     client.connect();
-    const queryResult = await client.query(`SELECT (username, salt, password, champion, region, postion, story, rank) FROM users`);
+    const queryResult = await client.query(`SELECT (username, salt, password, champion, region, position, story, rank) FROM users`);
     console.log(queryResult);
     client.end();
     return users;
