@@ -206,6 +206,7 @@ app.post('/signup', (req, res) => {
          console.log(typeof password);
          const lol = addUser(username, password, champion, region, position, story, rank);
          console.log(users);
+         console.log(users[username])
          console.log(!users[username]);
 	     if (lol) {
             console.log("xxx");
