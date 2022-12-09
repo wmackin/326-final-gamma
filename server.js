@@ -82,12 +82,20 @@ passport.deserializeUser((uid, done) => {
     done(null, uid);
 });
 
-function getUsers(){
+async function getUsers(){
     let users = {};
-    if (fs.existsSync('./data/users.JSON')) {
-        const usersJSON = fs.readFileSync('./data/users.JSON');
-        users = JSON.parse(usersJSON);
-    }
+    const { Client } = require('pg');
+    console.log(process.env.DATABASE_URL)
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+    client.connect();
+    const queryResult = await client.query(`SELECT (username, salt, password, champion, region, postion, story, rank) FROM `);
+    console.log(queryResult);
+    client.end();
     return users;
 }
 let users = getUsers(); // name : [salt, hash]'
@@ -113,19 +121,24 @@ function validatePassword(name, pwd) {
     return false;
 }
 
-function addUser(name, pwd, champion, region, position, story, rank) {
+async function addUser(name, pwd, champion, region, position, story, rank) {
     if (findUser(name)) {
         return false;
     }
     const [salt, hash] = mc.hash(pwd);
     users[name] = [salt, hash, champion, region, position, story, rank];
-    const content = JSON.stringify(users);
-    fs.writeFile('./data/users.JSON', content, err => {
-        if (err) {
-          console.error(err);
+    const { Client } = require('pg');
+    console.log(process.env.DATABASE_URL)
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
         }
-        // file written successfully
     });
+    client.connect();
+    const queryResult = await client.query(`INSERT INTO users (username, password, salt, champion, region, postion, story, rank) VALUES ('${name}','${hash}','${salt}',${champion},'${position}','${story}','${rank})`);
+    console.log(queryResult);
+    client.end();
     return true;
 }
 
@@ -161,7 +174,7 @@ function checkLoggedIn(req, res, next) {
 	next();
     } else {
 	// Otherwise, redirect to the login page.
-	res.redirect('/login');
+	res.redirect('/');
     }
 }
 
