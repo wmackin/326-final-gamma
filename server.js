@@ -101,7 +101,7 @@ async function getUsers(){
     }
     return users;
 }
-let users = await getUsers(); // name : [salt, hash]'
+let users =  getUsers(); // name : [salt, hash]'
 
 function findUser(username) {
     if (!users[username]) {
