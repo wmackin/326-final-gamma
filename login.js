@@ -1,4 +1,4 @@
-const loginButton = document.getElementById('loginButton');
+/*const loginButton = document.getElementById('loginButton');
 loginButton.addEventListener('click', async  e => {
     console.log('Event has occured');
     //let data = JSON.stringify({
@@ -17,7 +17,7 @@ loginButton.addEventListener('click', async  e => {
             window.location.assign(response.url);
         }
     }
-});
+});*/
 const signupButton = document.getElementById('signupButton');
 signupButton.addEventListener('click', async  e => {
     window.location.assign('/signup');
