@@ -101,7 +101,7 @@ async function getUsers(){
     }
     return users;
 }
-let users = getUsers(); // name : [salt, hash]'
+let users = await getUsers(); // name : [salt, hash]'
 
 function findUser(username) {
     if (!users[username]) {
@@ -213,7 +213,7 @@ app.get('/logout', (req, res) => {
       }); // Logs us out!
 });
 
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
          console.log(req.body)
 	     const username = req.body.user;
 	     const password = req.body.password;
@@ -223,7 +223,7 @@ app.post('/signup', (req, res) => {
          const story = req.body.story;
          const rank = req.body.rank;
          console.log(typeof password);
-         const lol = addUser(username, password, champion, region, position, story, rank);
+         const userAdded = await addUser(username, password, champion, region, position, story, rank);
          console.log(users);
          console.log(users[username])
          console.log(!users[username]);
