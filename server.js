@@ -93,12 +93,12 @@ async function getUsers(){
         }
     });
     client.connect();
-    const queryResult = await client.query(`SELECT (username, salt, password, champion, region, postion, story, rank) FROM `);
+    const queryResult = await client.query(`SELECT (username, salt, password, champion, region, postion, story, rank) FROM users`);
     console.log(queryResult);
     client.end();
     return users;
 }
-//let users = getUsers(); // name : [salt, hash]'
+let users = getUsers(); // name : [salt, hash]'
 
 function findUser(username) {
     if (!users[username]) {
