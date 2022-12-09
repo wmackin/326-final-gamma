@@ -185,6 +185,7 @@ function checkLoggedIn(req, res, next) {
   });*/
 
 
+app.use('/', express.static('.'));
 
 app.get('/',
     checkLoggedIn,
@@ -587,6 +588,5 @@ app.get('/region', async (req, res) => {
 
 
 
-app.use('/', express.static('.'));
 
 app.listen(process.env.PORT, () => { });
