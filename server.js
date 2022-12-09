@@ -136,7 +136,7 @@ async function addUser(name, pwd, champion, region, position, story, rank) {
         }
     });
     client.connect();
-    const queryResult = await client.query(`INSERT INTO users (username, password, salt, champion, region, position, story, rank) VALUES ('${name}','${hash}','${salt}','${champion}','${position}','${story}','${rank}')`);
+    const queryResult = await client.query(`INSERT INTO users (username, password, salt, champion, region, position, story, rank) VALUES ('${name}','${hash}','${salt}','${champion}','${region}','${position}','${story}','${rank}')`);
     console.log(queryResult);
     client.end();
     return true;
