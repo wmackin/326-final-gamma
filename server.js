@@ -182,7 +182,7 @@ app.get('/',
 app.post('/login',
     passport.authenticate('local', {
         'successRedirect' : '/user', // when we login, go to /private 
-        'failureRedirect' : '/poop'      // otherwise, back to login
+        'failureRedirect' : '/signup'      // otherwise, back to login
     }));
 
 app.get('/login',
@@ -208,6 +208,7 @@ app.post('/signup', (req, res) => {
          console.log(users);
          console.log(users[username])
          console.log(!users[username]);
+         console.log(validatePassword(username,password))
 	     if (lol) {
             console.log("xxx");
             //let url = new URL(url+"/login");
