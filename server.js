@@ -190,8 +190,10 @@ app.get('/login',
 				   { 'root' : "." }));
 
 app.get('/logout', (req, res) => {
-    req.logout(); // Logs us out!
-    res.redirect('/login'); // back to login
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/login');
+      }); // Logs us out!
 });
 
 app.post('/signup', (req, res) => {
