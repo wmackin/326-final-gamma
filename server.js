@@ -196,7 +196,7 @@ app.get('/logout', (req, res) => {
 
 app.post('/signup', (req, res) => {
          console.log(req.body)
-	     const username = req.body.username;
+	     const username = req.body.user;
 	     const password = req.body.password;
          const champion = req.body.champion;
          const region = req.body.region;
