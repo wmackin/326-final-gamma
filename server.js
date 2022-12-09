@@ -228,7 +228,7 @@ app.post('/signup', async (req, res) => {
          console.log(users[username])
          console.log(!users[username]);
          console.log(validatePassword(username,password))
-	     if (lol) {
+	     if (userAdded) {
             console.log("xxx");
             //let url = new URL(url+"/login");
             //res.send("1");
