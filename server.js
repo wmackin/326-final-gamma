@@ -82,8 +82,8 @@ passport.deserializeUser((uid, done) => {
     done(null, uid);
 });
 
+let users = {}
 async function getUsers(){
-    let users = {};
     const { Client } = require('pg');
     console.log(process.env.DATABASE_URL)
     const client = new Client({
@@ -95,13 +95,13 @@ async function getUsers(){
     client.connect();
     const queryResult = await client.query(`SELECT (username, salt, password, champion, region, position, story, rank) FROM users`);
     console.log(queryResult);
-    client.end();
     for (let row of queryResult.rows) {
         users[row.username] = [row.salt,row.password,row.champion,row.region,row.position,row.story,row.rank];
     }
+    client.end();
     return users;
 }
-let users =  getUsers(); // name : [salt, hash]'
+ // name : [salt, hash]'
 
 function findUser(username) {
     if (!users[username]) {
