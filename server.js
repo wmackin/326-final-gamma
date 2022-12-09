@@ -587,6 +587,6 @@ app.get('/region', async (req, res) => {
 
 
 
-app.use(express.static('.'));
+app.use('/', express.static('.'));
 
 app.listen(process.env.PORT, () => { });
