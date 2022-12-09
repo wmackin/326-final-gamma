@@ -103,6 +103,7 @@ function findUser(username) {
 
 // Returns true iff the password is the one we have stored.
 function validatePassword(name, pwd) {
+    console.log(name+pwd)
     if (!findUser(name)) {
         return false;
     }
