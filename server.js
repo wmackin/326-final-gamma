@@ -96,6 +96,9 @@ async function getUsers(){
     const queryResult = await client.query(`SELECT (username, salt, password, champion, region, position, story, rank) FROM users`);
     console.log(queryResult);
     client.end();
+    for (let row of queryResult.rows) {
+        users[row.username] = [row.salt,row.password,row.champion,row.region,row.position,row.story,row.rank];
+    }
     return users;
 }
 let users = getUsers(); // name : [salt, hash]'
