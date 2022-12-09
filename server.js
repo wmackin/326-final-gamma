@@ -98,7 +98,7 @@ async function getUsers(){
     client.end();
     return users;
 }
-let users = getUsers(); // name : [salt, hash]'
+//let users = getUsers(); // name : [salt, hash]'
 
 function findUser(username) {
     if (!users[username]) {
