@@ -97,7 +97,7 @@ async function getUsers(){
     console.log(queryResult);
     let ret = {};
     for (let row of queryResult.rows) {
-        console.log(row[row][0])
+        console.log(row["row"])
         ret[row.username] = [row.salt,row.password,row.champion,row.region,row.position,row.story,row.rank];
     }
     client.end();
