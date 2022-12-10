@@ -95,14 +95,18 @@ async function getUsers(){
     client.connect();
     const queryResult = await client.query(`SELECT (username, salt, password, champion, region, position, story, rank) FROM users;`);
     console.log(queryResult);
+    let ret = {};
     for (let row of queryResult.rows) {
-        users[row.username] = [row.salt,row.password,row.champion,row.region,row.position,row.story,row.rank];
+        ret[row.username] = [row.salt,row.password,row.champion,row.region,row.position,row.story,row.rank];
     }
     client.end();
-    return users;
+    return ret;
 }
  // name : [salt, hash]'
-getUsers();
+ (async () => {
+    const users = await getUsers()
+    console.log(users)
+  })()
 console.log("USERS +> " + JSON.stringify(users));
 
 function findUser(username) {
