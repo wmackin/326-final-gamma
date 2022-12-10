@@ -105,7 +105,7 @@ async function getUsers(){
 }
  // name : [salt, hash]'
  (async () => {
-    const users = await getUsers()
+    users = await getUsers()
     console.log(users)
   })()
 console.log("USERS +> " + JSON.stringify(users));
