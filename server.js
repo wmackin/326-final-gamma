@@ -224,7 +224,7 @@ app.post('/signup', async (req, res) => {
          const rank = req.body.rank;
          console.log(typeof password);
          const userAdded = await addUser(username, password, champion, region, position, story, rank);
-         console.log(users);
+         console.log("users:" + JSON.stringify(users));
          console.log(users[username])
          console.log(!users[username]);
          console.log(validatePassword(username,password))
