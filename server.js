@@ -102,6 +102,7 @@ async function getUsers(){
     return users;
 }
  // name : [salt, hash]'
+ getUsers();
 
 function findUser(username) {
     if (!users[username]) {
