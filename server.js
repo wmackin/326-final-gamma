@@ -102,8 +102,8 @@ async function getUsers(){
     return users;
 }
  // name : [salt, hash]'
- getUsers();
- console.log(users);
+ await getUsers();
+ console.log("USERS +> " + JSON.stringify(users));
 
 function findUser(username) {
     if (!users[username]) {
