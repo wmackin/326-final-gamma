@@ -97,7 +97,7 @@ async function getUsers(){
     console.log(queryResult);
     let ret = {};
     for (let row of queryResult.rows) {
-        console.log(row.username)
+        console.log(row)
         ret[row.username] = [row.salt,row.password,row.champion,row.region,row.position,row.story,row.rank];
     }
     client.end();
@@ -106,8 +106,7 @@ async function getUsers(){
  // name : [salt, hash]'
  (async () => {
     users = await getUsers()
-    console.log(users)
-  })()
+    console.log(users)})();
 console.log("USERS +> " + JSON.stringify(users));
 
 function findUser(username) {
