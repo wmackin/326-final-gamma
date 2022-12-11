@@ -78,7 +78,7 @@ async function userFavorites(userID) {
     });
 
     client.connect();
-    const queryResult = await client.query(`SELECT champion, region, position, story, rank FROM reviews WHERE username = '${userID}';`);
+    const queryResult = await client.query(`SELECT champion, region, position, story, rank FROM users WHERE username = '${userID}';`);
     for (let row of queryResult.rows) {
         const favChampion = row['champion'];
         const favRegion = row['region'];
