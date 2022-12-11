@@ -282,7 +282,7 @@ app.get('/user',
 // A dummy page for the user.
 app.get('/user/:userID/',
 	checkLoggedIn, // We also protect this route: authenticated...
-	(req, res) => {
+	async (req, res) => {
 	    // Verify this is the right user.
 	    if (req.params.userID === req.user) {
             let content = `
@@ -323,7 +323,7 @@ app.get('/user/:userID/',
         <div> 
             <h2>Recent Reviews</h2>
         </div>`;
-        content += userReviews(req.params.userID);
+        content += await userReviews(req.params.userID);
         content += `</div>
     
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
