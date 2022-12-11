@@ -451,11 +451,6 @@ app.get('/champion', async (req, res) => {
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             ${dropDownRegions()}
                                         </div>
-                                        <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
-                                            #Fan-Fic
-                                        <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
-                                            #Story-Specific
-                                        </button>
                                     </div>
                                 </div> 
                             </div>
@@ -552,11 +547,6 @@ app.get('/region', async (req, res) => {
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         ${dropDownRegions()}
                                     </div>
-                                    <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
-                                        #Fan-Fic
-                                    <button class="btn btn-secondary" type="button" id="button" aria-expanded="false">
-                                        #Story-Specific
-                                    </button>
                                 </div>
                             </div> 
                         </div>
