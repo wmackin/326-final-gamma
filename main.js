@@ -31,30 +31,29 @@ async function loadRegions() {
             gridContainer.appendChild(rowDiv);
         });
     }
+    const userResponse = await fetch('/signedInUser');
+    let user;
+    if (userResponse.ok) {
+        let userJSON = await userResponse.json();
+        user = userJSON['user']
+        if (user === undefined) {
+            user = "Anonymous";
+        }
+    }
+    else {
+        user = "Anonymous";
+    }
+    if (user !== "Anonymous") {
+        document.getElementById('signupLoginButton').addEventListener('click', async () => {
+            window.location.assign("/user");
+            document.getElementById('signupLoginButton').href = user;
+        });
+    }
+    else {
+        document.getElementById('signupLoginButton').addEventListener('click', async () => {
+            window.location.assign("/login");
+        });
+    }
 }
 
 window.onload = loadRegions();
-
-const userResponse = await fetch('/signedInUser');
-let user;
-if (userResponse.ok) {
-    let userJSON = await userResponse.json();
-    user = userJSON['user']
-    if (user === undefined) {
-        user = "Anonymous";
-    }
-}
-else {
-    user = "Anonymous";
-}
-if (user !== "Anonymous") {
-    document.getElementById('signupLoginButton').addEventListener('click', async () => {
-        window.location.assign("/user");
-        document.getElementById('signupLoginButton').href = user;
-    });
-}
-else {
-    document.getElementById('signupLoginButton').addEventListener('click', async () => {
-        window.location.assign("/login");
-    });
-}
