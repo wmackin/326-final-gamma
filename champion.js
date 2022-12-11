@@ -21,4 +21,8 @@ sumbitButton.addEventListener('click', async  e => {
 document.getElementById("login-button").addEventListener("click", async () => {
     window.location.assign("/login");
 });
+
+document.getElementById("account-button").addEventListener("click", async () => {
+    window.location.assign("/user");
+});
 //sumbitButton.addEventListener('click', location.reload.bind(window.location));

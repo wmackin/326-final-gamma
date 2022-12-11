@@ -508,17 +508,20 @@ app.get('/region', async (req, res) => {
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
                 </head>
                 <body>
-                ${user}
                     <div class="row">
                         <div class="col lg-2">
                             <div class="text-start">
                                 <a class="btn btn-primary" href="/" role="button">Home</a>
                             </div> 
                         </div>
-                        <div class="text-end col">
-                            <button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>
-                            <img src="profPic.jpg" class="rounded" style="width: 100px;height: 100px">
-                        </div>
+                        <div class="text-end col">`;
+                        if (user === undefined) {
+                            content += `<button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>`;
+                        }
+                        else {
+                            content += `<button type="submit" class="btn btn-secondary" id="account-button">${user}</button>`;
+                        }
+                        content += `</div>
                     </div>
                     <div class="display-1">
                         <div class="text-center" id="name">${region.name}</div>
@@ -578,89 +581,6 @@ app.get('/region', async (req, res) => {
                     <script src="./champion.js"></script>
                 </body>
             </html>`;
-            //                         <div class="text-right">
-            //                             <img src="images/championImages/`;
-            //             content += champion.image;
-            //             content += `" class="img-thumbnail" style="width:960px;height:490px" id="championImage">
-            //         </div>
-
-            //         <div class="row">
-            //             <div class="fs-3">
-            //             <a href=`
-            //             content += champion.link;
-            //             content += `>View official lore</a></div>
-            //         </div>
-            //         <div class="row">
-            //             <div class="col-lg-2">
-            //                 <div class="list-group">
-            //                     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-            //                         #General-Region
-            //                     </a>
-            //                     <a href="#" class="list-group-item list-group-item-action">#Story-Specific</a>
-            //                     <a href="#" class="list-group-item list-group-item-action">#Fan-Fic</a>
-            //                 </div>
-            //         </div> 
-            //         </div>
-            //         <div class="row">
-            //             <div class="col-lg-6">
-            //                 <input type="text" class="form-control" placeholder="Type your thoughts here!"
-            //                     aria-label="Type your thoughts here!" id="reviewBox">
-            //             </div>
-            //         </div>
-
-            //         <div class="col-12">
-            //             <button class="btn btn-primary" type="submit" id='submitPost'>Submit Post</button>
-            //             <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
-            //         </div>
-
-
-            //         <div class="row">
-            //             <div class="text-right">
-
-            //                 <img src="67-676994_4-stars-four-out-of-five-stars.png" class="rounded"
-            //                     style="width: 100px;height: 23px">
-            //             </div>
-            //         </div>
-
-            //         <div class="text-start">
-
-            //         </div>
-
-
-
-            // </div>
-            // <div class="fs-2">Discussion</div>`;
-            //             const client = new Client({
-            //                 user: 'postgres',
-            //                 host: 'localhost',
-            //                 database: 'gamma_user_info',
-            //                 password: '1234abcd',
-            //                 port: 5432,
-            //             });
-            //             client.connect();
-            //             const queryResult = await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`);
-            //             // content += await client.query(`SELECT * FROM reviews WHERE lore = '${champion.name}';`, async (err, result) => {
-            //             //     let queryContent = "";
-            //             // if (err) throw err;
-            //             for (let row of queryResult.rows) {
-            //                 content += '<div class="container"><div class="fs-5">By ';
-            //                 content += row.username;
-            //                 content += '</div><div class="fs-3">';
-            //                 content += row.review;
-            //                 content += '</div></div>';
-            //             }
-            //             content += `</div>
-
-            //     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-            //         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-            //         crossorigin="anonymous"></script>
-            //     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-            //         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-            //         crossorigin="anonymous"></script>
-            //         <script src="champion.js"></script>
-            //     </body>
-
-            //     </html>`;
             res.send(content);
         }
     }
@@ -669,8 +589,6 @@ app.get('/region', async (req, res) => {
     }
     res.end();
 });
-
-
 
 
 app.listen(process.env.PORT, () => { });
