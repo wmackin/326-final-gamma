@@ -398,6 +398,7 @@ app.get('/champion', async (req, res) => {
         else {
             const champion = championsFiltered[0];
             const discussion = await generateDiscussion(champion.name);
+            const user = req.user;
             let content = `<!DOCTYPE html>
             <html lang="en">
                 <head>
