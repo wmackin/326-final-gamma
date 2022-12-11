@@ -22,7 +22,7 @@ const port = process.env.PORT;     // we will listen on this port
 const minicrypt = require('./miniCrypt');
 const mc = new minicrypt();
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 async function generateDiscussion(name) {
     discussion = ``;
     const { Client } = require('pg');
@@ -68,29 +68,54 @@ async function userReviews(userID) {
     return reviews;
 }
 
+async function userFavorites(userID) {
+    const { Client } = require('pg');
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+
+    client.connect();
+    const queryResult = await client.query(`SELECT champion, region, position, story, rank FROM reviews WHERE username = '${userID}';`);
+    for (let row of queryResult.rows) {
+        const favChampion = row['champion'];
+        const favRegion = row['region'];
+        const favPosition = row['position'];
+        const favStory = row['story'];
+        const rank = row['rank'];
+        return `<div class="p-3 bg-opacity-10 border border-grey border-start-0 rounded-end">
+    <p>Favorite champion: ${favChampion}</p>
+    <p>Favorite region: ${favRegion}</p>
+    <p>Favorite position: ${favPosition}</p>
+    <p>Favorite story: ${favStory}</p>
+    <p>Current rank: ${rank}</p></div>`;
+    }
+}
 
 const session = {
-    secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
-    resave : false,
+    secret: process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
+    resave: false,
     saveUninitialized: false
 };
 const strategy = new LocalStrategy(
     async (username, password, done) => {
-	if (!findUser(username)) {
-	    // no such user
-	    await new Promise((r) => setTimeout(r, 2000)); // two second delay
-	    return done(null, false, { 'message' : 'Wrong username' });
-	}
-	if (!validatePassword(username, password)) {
-	    // invalid password
-	    // should disable logins after N messages
-	    // delay return to rate-limit brute-force attacks
-	    await new Promise((r) => setTimeout(r, 2000)); // two second delay
-	    return done(null, false, { 'message' : 'Wrong password' });
-	}
-	// success!
-	// should create a user object here, associated with a unique identifier
-	return done(null, username);
+        if (!findUser(username)) {
+            // no such user
+            await new Promise((r) => setTimeout(r, 2000)); // two second delay
+            return done(null, false, { 'message': 'Wrong username' });
+        }
+        if (!validatePassword(username, password)) {
+            // invalid password
+            // should disable logins after N messages
+            // delay return to rate-limit brute-force attacks
+            await new Promise((r) => setTimeout(r, 2000)); // two second delay
+            return done(null, false, { 'message': 'Wrong password' });
+        }
+        // success!
+        // should create a user object here, associated with a unique identifier
+        return done(null, username);
     });
 
 app.use(expressSession(session));
@@ -107,7 +132,7 @@ passport.deserializeUser((uid, done) => {
 });
 
 let users = {}
-async function getUsers(){
+async function getUsers() {
     const { Client } = require('pg');
     console.log(process.env.DATABASE_URL)
     const client = new Client({
@@ -122,21 +147,22 @@ async function getUsers(){
     let ret = {};
     for (let row of queryResult.rows) {
         console.log(row)
-        ret[row.username] = [row.salt,row.password,row.champion,row.region,row.position,row.story,row.rank];
+        ret[row.username] = [row.salt, row.password, row.champion, row.region, row.position, row.story, row.rank];
     }
     client.end();
     return ret;
 }
- // name : [salt, hash]'
- (async () => {
+// name : [salt, hash]'
+(async () => {
     users = await getUsers()
-    console.log(users)})();
+    console.log(users)
+})();
 console.log("USERS +> " + JSON.stringify(users));
 
 function findUser(username) {
     if (!users[username]) {
         return false;
-    } 
+    }
     else {
         return true;
     }
@@ -144,7 +170,7 @@ function findUser(username) {
 
 // Returns true iff the password is the one we have stored.
 function validatePassword(name, pwd) {
-    console.log(name+pwd)
+    console.log(name + pwd)
     if (!findUser(name)) {
         return false;
     }
@@ -203,11 +229,11 @@ function dropDownRegions() {
 
 function checkLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
-	// If we are authenticated, run the next route.
-	next();
+        // If we are authenticated, run the next route.
+        next();
     } else {
-	// Otherwise, redirect to the login page.
-	res.redirect('/');
+        // Otherwise, redirect to the login page.
+        res.redirect('/');
     }
 }
 
@@ -222,69 +248,69 @@ app.use('/', express.static('.'));
 
 app.get('/',
     checkLoggedIn,
-	(req, res) => {
-	    res.send("hello world");
-	});
+    (req, res) => {
+        res.send("hello world");
+    });
 
 app.post('/login',
     passport.authenticate('local', {
-        'successRedirect' : '/user', // when we login, go to /private 
-        'failureRedirect' : '/signup'      // otherwise, back to login
+        'successRedirect': '/user', // when we login, go to /private 
+        'failureRedirect': '/signup'      // otherwise, back to login
     }));
 
 app.get('/login',
-	(req, res) => res.sendFile('/login.html',
-				   { 'root' : "." }));
+    (req, res) => res.sendFile('/login.html',
+        { 'root': "." }));
 
 app.get('/logout', (req, res) => {
-    req.logout(function(err) {
+    req.logout(function (err) {
         if (err) { return next(err); }
         res.redirect('/login');
-      }); // Logs us out!
+    }); // Logs us out!
 });
 
 app.post('/signup', async (req, res) => {
-         console.log(req.body)
-	     const username = req.body.user;
-	     const password = req.body.password;
-         const champion = req.body.champion;
-         const region = req.body.region;
-         const position = req.body.position;
-         const story = req.body.story;
-         const rank = req.body.rank;
-         console.log(typeof password);
-         const userAdded = await addUser(username, password, champion, region, position, story, rank);
-         console.log("users:" + JSON.stringify(users));
-         console.log(users[username])
-         console.log(!users[username]);
-         console.log(validatePassword(username,password))
-	     if (userAdded) {
-            console.log("xxx");
-            //let url = new URL(url+"/login");
-            //res.send("1");
-            res.redirect('/login');
-	     } 
-         else {
-            //res.send("-1");
-		    res.redirect('/signup');
-	     }
-	 });
+    console.log(req.body)
+    const username = req.body.user;
+    const password = req.body.password;
+    const champion = req.body.champion;
+    const region = req.body.region;
+    const position = req.body.position;
+    const story = req.body.story;
+    const rank = req.body.rank;
+    console.log(typeof password);
+    const userAdded = await addUser(username, password, champion, region, position, story, rank);
+    console.log("users:" + JSON.stringify(users));
+    console.log(users[username])
+    console.log(!users[username]);
+    console.log(validatePassword(username, password))
+    if (userAdded) {
+        console.log("xxx");
+        //let url = new URL(url+"/login");
+        //res.send("1");
+        res.redirect('/login');
+    }
+    else {
+        //res.send("-1");
+        res.redirect('/signup');
+    }
+});
 
-app.get('/signup', (req, res) => res.sendFile('/signup.html',  {'root' : "."}));
+app.get('/signup', (req, res) => res.sendFile('/signup.html', { 'root': "." }));
 
 // Private data
 app.get('/user',
-	checkLoggedIn, // If we are logged in (notice the comma!)...
-	(req, res) => {             // Go to the user's page.
-	    res.redirect('/user/' + req.user);
-	});
+    checkLoggedIn, // If we are logged in (notice the comma!)...
+    (req, res) => {             // Go to the user's page.
+        res.redirect('/user/' + req.user);
+    });
 
 // A dummy page for the user.
 app.get('/user/:userID/',
-	checkLoggedIn, // We also protect this route: authenticated...
-	async (req, res) => {
-	    // Verify this is the right user.
-	    if (req.params.userID === req.user) {
+    checkLoggedIn, // We also protect this route: authenticated...
+    async (req, res) => {
+        // Verify this is the right user.
+        if (req.params.userID === req.user) {
             let content = `
             <!DOCTYPE html>
 <html lang="en">
@@ -318,13 +344,14 @@ app.get('/user/:userID/',
         <div class="text-center">
             ` + req.params.userID + `
         </div>
-    </div>
-    <div>
+    </div>`;
+            content += await userFavorites(res.params.userID);
+            content += `<div>
         <div> 
             <h2>Recent Reviews</h2>
         </div>`;
-        content += await userReviews(req.params.userID);
-        content += `</div>
+            content += await userReviews(req.params.userID);
+            content += `</div>
     
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
@@ -334,14 +361,14 @@ app.get('/user/:userID/',
             res.send(content);
 
 
-		// res.writeHead(200, {"Content-Type" : "text/html"});
-		// res.write('<H1>HELLO ' + req.params.userID + "</H1>");
-		// res.write('<br/><a href="/logout">click here to logout</a>');
-		// res.end();
-	    } else {
-		res.redirect('/user/');
-	    }
-	})
+            // res.writeHead(200, {"Content-Type" : "text/html"});
+            // res.write('<H1>HELLO ' + req.params.userID + "</H1>");
+            // res.write('<br/><a href="/logout">click here to logout</a>');
+            // res.end();
+        } else {
+            res.redirect('/user/');
+        }
+    })
 
 app.get('/champion.js', (req, res) => {
     res.send('./champion.js');
@@ -416,13 +443,13 @@ app.get('/champion', async (req, res) => {
                             </div> 
                         </div>
                         <div class="text-end col">`;
-                        if (user === undefined) {
-                            content += `<button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>`;
-                        }
-                        else {
-                            content += `<button type="submit" class="btn btn-secondary" id="account-button">${user}</button>`;
-                        }
-                        content += `</div>
+            if (user === undefined) {
+                content += `<button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>`;
+            }
+            else {
+                content += `<button type="submit" class="btn btn-secondary" id="account-button">${user}</button>`;
+            }
+            content += `</div>
                     </div>
                     <div class="display-1">
                         <div class="text-center" id="name">${champion.name}</div>
@@ -510,13 +537,13 @@ app.get('/region', async (req, res) => {
                             </div> 
                         </div>
                         <div class="text-end col">`;
-                        if (user === undefined) {
-                            content += `<button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>`;
-                        }
-                        else {
-                            content += `<button type="submit" class="btn btn-secondary" id="account-button">${user}</button>`;
-                        }
-                        content += `</div>
+            if (user === undefined) {
+                content += `<button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>`;
+            }
+            else {
+                content += `<button type="submit" class="btn btn-secondary" id="account-button">${user}</button>`;
+            }
+            content += `</div>
                     </div>
                     <div class="display-1">
                         <div class="text-center" id="name">${region.name}</div>
@@ -576,7 +603,7 @@ app.get('/region', async (req, res) => {
 });
 
 app.get('/signedInUser', (req, res) => {
-    res.json({user: req.user});
+    res.json({ user: req.user });
 });
 
 app.listen(process.env.PORT, () => { });
