@@ -496,6 +496,7 @@ app.get('/region', async (req, res) => {
         else {
             const region = regionsFiltered[0];
             const discussion = await generateDiscussion(region.name);
+            const user = req.user;
             let content =
                 `<!DOCTYPE html>
             <html lang="en">
@@ -507,6 +508,7 @@ app.get('/region', async (req, res) => {
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
                 </head>
                 <body>
+                ${user}
                     <div class="row">
                         <div class="col lg-2">
                             <div class="text-start">
