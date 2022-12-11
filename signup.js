@@ -1,6 +1,5 @@
 const signupButton = document.getElementById('signupButton');
 signupButton.addEventListener('click', async  e => {
-    console.log('Event has occured');
     let data = JSON.stringify({
         "user" : document.getElementById("username").value,
         "password": document.getElementById("pwd").value, 
@@ -16,10 +15,8 @@ signupButton.addEventListener('click', async  e => {
         headers:  {'Content-Type': 'application/json'},
         body: data,
     });
-    console.log(response);
     if (response.ok) {
         if (response.redirected) {
-            console.log('true');
             window.location.assign(response.url);
         }
     }

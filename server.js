@@ -10,15 +10,7 @@ app.use(cors());
 let fs = require('fs');
 const LocalStrategy = require('passport-local').Strategy;
 const port = process.env.PORT;     // we will listen on this port
-// const { Client } = require('pg');
-// const client = new Client({
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: {
-//         rejectUnauthorized: false
-//     }
-// });
 
-// client.connect();
 const minicrypt = require('./miniCrypt');
 const mc = new minicrypt();
 app.use(express.json());
@@ -58,7 +50,6 @@ async function userReviews(userID) {
     client.connect();
     const queryResult = await client.query(`SELECT * FROM reviews WHERE username = '${userID}' ORDER BY time_posted DESC;`);
     for (let row of queryResult.rows) {
-        console.log(row);
         reviews += `<div class="container">
                             <div class="fs-5">In ${row.lore}</div>
                             <div class="fs-3">${row.review}</div>
@@ -134,7 +125,6 @@ passport.deserializeUser((uid, done) => {
 let users = {}
 async function getUsers() {
     const { Client } = require('pg');
-    console.log(process.env.DATABASE_URL)
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
@@ -143,10 +133,8 @@ async function getUsers() {
     });
     client.connect();
     const queryResult = await client.query(`SELECT * FROM users;`);
-    console.log(queryResult);
     let ret = {};
     for (let row of queryResult.rows) {
-        console.log(row)
         ret[row.username] = [row.salt, row.password, row.champion, row.region, row.position, row.story, row.rank];
     }
     client.end();
@@ -155,9 +143,7 @@ async function getUsers() {
 // name : [salt, hash]'
 (async () => {
     users = await getUsers()
-    console.log(users)
 })();
-console.log("USERS +> " + JSON.stringify(users));
 
 function findUser(username) {
     if (!users[username]) {
@@ -170,7 +156,6 @@ function findUser(username) {
 
 // Returns true iff the password is the one we have stored.
 function validatePassword(name, pwd) {
-    console.log(name + pwd)
     if (!findUser(name)) {
         return false;
     }
@@ -187,7 +172,6 @@ async function addUser(name, pwd, champion, region, position, story, rank) {
     const [salt, hash] = mc.hash(pwd);
     users[name] = [salt, hash, champion, region, position, story, rank];
     const { Client } = require('pg');
-    console.log(process.env.DATABASE_URL)
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
@@ -196,7 +180,6 @@ async function addUser(name, pwd, champion, region, position, story, rank) {
     });
     client.connect();
     const queryResult = await client.query(`INSERT INTO users (username, password, salt, champion, region, position, story, rank) VALUES ('${name}','${hash}','${salt}','${champion}','${region}','${position}','${story}','${rank}')`);
-    console.log(queryResult);
     client.end();
     return true;
 }
@@ -237,13 +220,6 @@ function checkLoggedIn(req, res, next) {
     }
 }
 
-/*app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });*/
-
-
 app.use('/', express.static('.'));
 
 app.get('/',
@@ -270,7 +246,6 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
-    console.log(req.body)
     const username = req.body.user;
     const password = req.body.password;
     const champion = req.body.champion;
@@ -278,20 +253,11 @@ app.post('/signup', async (req, res) => {
     const position = req.body.position;
     const story = req.body.story;
     const rank = req.body.rank;
-    console.log(typeof password);
     const userAdded = await addUser(username, password, champion, region, position, story, rank);
-    console.log("users:" + JSON.stringify(users));
-    console.log(users[username])
-    console.log(!users[username]);
-    console.log(validatePassword(username, password))
     if (userAdded) {
-        console.log("xxx");
-        //let url = new URL(url+"/login");
-        //res.send("1");
         res.redirect('/login');
     }
     else {
-        //res.send("-1");
         res.redirect('/signup');
     }
 });
@@ -360,11 +326,6 @@ app.get('/user/:userID/',
             `;
             res.send(content);
 
-
-            // res.writeHead(200, {"Content-Type" : "text/html"});
-            // res.write('<H1>HELLO ' + req.params.userID + "</H1>");
-            // res.write('<br/><a href="/logout">click here to logout</a>');
-            // res.end();
         } else {
             res.redirect('/user/');
         }
@@ -378,27 +339,19 @@ app.get('/main.js', (req, res) => {
     res.send('./main.js');
 });
 
-// app.get('/data/regions.json', (req, res) => {
-//     res.send('./data/regions.json');
-// });
-
 app.get('/getRegions', (req, res) => {
-    console.log('found regions')
     const regionsJSON = fs.readFileSync('./data/regions.JSON');
     const regions = JSON.parse(regionsJSON);
     res.send(regions);
 });
 
 app.post('/addPost', async (req, res) => {
-    console.log("You are in post");
-    console.log(req.body);
     const user = req.body.user;
     const lore = req.body.lore;
     const review = req.body.review;
     const likes = 0;
     const time_posted = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const { Client } = require('pg');
-    console.log(process.env.DATABASE_URL)
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
@@ -408,7 +361,6 @@ app.post('/addPost', async (req, res) => {
 
     client.connect();
     const queryResult = await client.query(`INSERT INTO reviews (username,lore,review,likes,time_posted) VALUES ('${user}','${lore}','${review}',${likes},'${time_posted}')`);
-    console.log(queryResult);
     client.end();
     res.send(req.body);
 })
@@ -487,7 +439,7 @@ app.get('/champion', async (req, res) => {
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="submit" id="sumbitButton">Submit</button>
+                                <button class="btn btn-primary" type="submit" id="submitButton">Submit</button>
                                 <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
                             </div>
                             <div class="text-start"></div>
@@ -583,7 +535,7 @@ app.get('/region', async (req, res) => {
                             </div>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="submit" id="sumbitButton">Submit</button>
+                            <button class="btn btn-primary" type="submit" id="submitButton">Submit</button>
                             <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
                         </div>
                         <div class="text-start"></div>

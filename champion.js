@@ -1,13 +1,11 @@
 
-const sumbitButton = document.getElementById('sumbitButton');
-sumbitButton.addEventListener('click', async e => {
-    console.log('Event has occured');
+const submitButton = document.getElementById('submitButton');
+submitButton.addEventListener('click', async e => {
     const userResponse = await fetch('/signedInUser');
     let user;
     if (userResponse.ok) {
         let userJSON = await userResponse.json();
         user = userJSON['user']
-        console.log(user);
         if (user === undefined) {
             user = "Anonymous";
         }
@@ -20,13 +18,11 @@ sumbitButton.addEventListener('click', async e => {
         "review": document.getElementById("reviewBox").value,
         "lore": document.getElementById("name").innerText
     });
-    console.log(data)
     const response = await fetch('/addPost', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: data,
     })
-    console.log(response);
     location.reload();
 });
 
@@ -41,4 +37,3 @@ if (document.getElementById("account-button")) {
         window.location.assign("/user");
     });
 }
-//sumbitButton.addEventListener('click', location.reload.bind(window.location));
