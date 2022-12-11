@@ -345,7 +345,7 @@ app.get('/user/:userID/',
             ` + req.params.userID + `
         </div>
     </div>`;
-            content += await userFavorites(res.params.userID);
+            content += await userFavorites(req.params.userID);
             content += `<div>
         <div> 
             <h2>Recent Reviews</h2>
