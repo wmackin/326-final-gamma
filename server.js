@@ -56,7 +56,7 @@ async function userReviews(userID) {
     });
 
     client.connect();
-    const queryResult = await client.query(`SELECT * FROM reviews WHERE user = '${userID}' ORDER BY time_posted DESC;`);
+    const queryResult = await client.query(`SELECT * FROM reviews WHERE username = '${userID}' ORDER BY time_posted DESC;`);
     for (let row of queryResult.rows) {
         console.log(row);
         reviews += `<div class="container">
