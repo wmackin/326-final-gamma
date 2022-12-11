@@ -46,7 +46,7 @@ async function loadRegions() {
     if (user !== "Anonymous") {
         document.getElementById('signupLoginButton').addEventListener('click', async () => {
             window.location.assign("/user");
-            document.getElementById('signupLoginButton').innerHTML = user;
+            document.getElementById('signupLoginButton').textContent = user;
         });
     }
     else {
