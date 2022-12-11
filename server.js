@@ -310,7 +310,7 @@ app.get('/user/:userID/',
     <div>
         <div>
             <a class="btn" href="/">Return</a>
-            <a class="btn float-end">Signout</a>
+            <a class="btn float-end" href="/logout">Signout</a>
         </div>
     </div>
     
