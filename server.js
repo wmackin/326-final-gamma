@@ -45,6 +45,29 @@ async function generateDiscussion(name) {
     return discussion;
 }
 
+async function userReviews(userID) {
+    reviews = ``;
+    const { Client } = require('pg');
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+
+    client.connect();
+    const queryResult = await client.query(`SELECT * FROM reviews WHERE user = '${userID}' ORDER BY time_posted DESC;`);
+    for (let row of queryResult.rows) {
+        reviews += `<div class="container">
+                            <div class="fs-5">In ${row.lore}</div>
+                            <div class="fs-3">${row.review}</div>
+                        </div>`;
+    }
+    client.end();
+    return reviews;
+}
+}
+
 const session = {
     secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
     resave : false,
@@ -261,7 +284,7 @@ app.get('/user/:userID/',
 	(req, res) => {
 	    // Verify this is the right user.
 	    if (req.params.userID === req.user) {
-            res.send(`
+            let content = `
             <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -292,28 +315,22 @@ app.get('/user/:userID/',
     
     <div class="display-1">
         <div class="text-center">
-            ` + req.params.userid + `
+            ` + req.params.userID + `
         </div>
     </div>
     <div>
         <div> 
-            <h2>Recent Reviews And Ratings</h2>
-        </div>
-        <div>
-            <button type="button" class="btn btn-secondary btn-square-lg">Lore</button>
-            <h5> Review</h5>
-        </div>
-        <div>
-            <button type="button" class="btn btn-secondary btn-square-lg">Lore</button>
-            <h5> Review</h5>
-        </div>
-    </div>
+            <h2>Recent Reviews</h2>
+        </div>`;
+        content += userReviews(req.params.userID);
+        content += `</div>
     
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     </body>
 </html>
-            `);
+            `;
+            res.send(content);
 
 
 		// res.writeHead(200, {"Content-Type" : "text/html"});
