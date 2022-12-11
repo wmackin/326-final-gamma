@@ -591,7 +591,7 @@ app.get('/region', async (req, res) => {
 });
 
 app.get('/signedInUser', (req, res) => {
-    res.send(req.user);
+    res.json({user: req.user});
 });
 
 app.listen(process.env.PORT, () => { });
