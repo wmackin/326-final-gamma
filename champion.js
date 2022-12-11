@@ -3,7 +3,7 @@ const sumbitButton = document.getElementById('sumbitButton');
 sumbitButton.addEventListener('click', async e => {
     console.log('Event has occured');
     let user = await fetch('/signedInUser');
-    console.log(user);
+    console.log(user.json());
     if (user === undefined) {
         user = "Anonymous";
     }
