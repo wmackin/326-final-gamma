@@ -414,10 +414,14 @@ app.get('/champion', async (req, res) => {
                                 <a class="btn btn-primary" href="/" role="button">Home</a>
                             </div> 
                         </div>
-                        <div class="text-end col">
-                            <button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>
-                            <img src="profPic.jpg" class="rounded" style="width: 100px;height: 100px">
-                        </div>
+                        <div class="text-end col">`;
+                        if (user === undefined) {
+                            content += `<button type="submit" class="btn btn-secondary" id="login-button">Signup/Login</button>`;
+                        }
+                        else {
+                            content += `<button type="submit" class="btn btn-secondary" id="account-button">${user}</button>`;
+                        }
+                        content += `</div>
                     </div>
                     <div class="display-1">
                         <div class="text-center" id="name">${champion.name}</div>
@@ -462,11 +466,6 @@ app.get('/champion', async (req, res) => {
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit" id="sumbitButton">Submit</button>
                                 <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
-                            </div>
-                            <div class="row">
-                                <div class="text-right">
-                                    <img src="67-676994_4-stars-four-out-of-five-stars.png" class="rounded" style="width: 100px;height: 23px">
-                                </div>
                             </div>
                             <div class="text-start"></div>
                         </div>
@@ -568,11 +567,6 @@ app.get('/region', async (req, res) => {
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit" id="sumbitButton">Submit</button>
                             <!--<button class="btn btn-secondary" type="submit">Reply</button>-->
-                        </div>
-                        <div class="row">
-                            <div class="text-right">
-                                <img src="67-676994_4-stars-four-out-of-five-stars.png" class="rounded" style="width: 100px;height: 23px">
-                            </div>
                         </div>
                         <div class="text-start"></div>
                         <div class="fs-2">Discussion</div>
