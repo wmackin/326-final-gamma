@@ -7,7 +7,7 @@ async function loadRegions() {
             let rowDiv = document.createElement("div");
             rowDiv.classList.add('row');
             for (let i = 0; i < regions.length; i++) {
-                if (i % 4 === 0 && i !== 0) { 
+                if (i % 4 === 0 && i !== 0) {
                     gridContainer.appendChild(rowDiv);
                     rowDiv = document.createElement("div");
                     rowDiv.classList.add('row');
@@ -34,6 +34,27 @@ async function loadRegions() {
 }
 
 window.onload = loadRegions();
-document.getElementById('signupLoginButton').addEventListener('click', async () => {
-    window.location.assign("/login");
-});
+
+const userResponse = await fetch('/signedInUser');
+let user;
+if (userResponse.ok) {
+    let userJSON = await userResponse.json();
+    user = userJSON['user']
+    if (user === undefined) {
+        user = "Anonymous";
+    }
+}
+else {
+    user = "Anonymous";
+}
+if (user !== "Anonymous") {
+    document.getElementById('signupLoginButton').addEventListener('click', async () => {
+        window.location.assign("/user");
+        document.getElementById('signupLoginButton').href = user;
+    });
+}
+else {
+    document.getElementById('signupLoginButton').addEventListener('click', async () => {
+        window.location.assign("/login");
+    });
+}
