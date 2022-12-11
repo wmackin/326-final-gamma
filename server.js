@@ -313,13 +313,13 @@ app.get('/user/:userID/',
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     </body>
 </html>
-            `)
+            `);
 
 
-		res.writeHead(200, {"Content-Type" : "text/html"});
-		res.write('<H1>HELLO ' + req.params.userID + "</H1>");
-		res.write('<br/><a href="/logout">click here to logout</a>');
-		res.end();
+		// res.writeHead(200, {"Content-Type" : "text/html"});
+		// res.write('<H1>HELLO ' + req.params.userID + "</H1>");
+		// res.write('<br/><a href="/logout">click here to logout</a>');
+		// res.end();
 	    } else {
 		res.redirect('/user/');
 	    }
