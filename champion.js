@@ -2,9 +2,15 @@
 const sumbitButton = document.getElementById('sumbitButton');
 sumbitButton.addEventListener('click', async e => {
     console.log('Event has occured');
-    let user = await fetch('/signedInUser');
-    console.log(user.json());
-    if (user === undefined) {
+    const userResponse = await fetch('/signedInUser');
+    if (userResponse.ok()) {
+        user = userResponse.json();
+        console.log(user);
+        if (user === undefined) {
+            user = "Anonymous";
+        }
+    }
+    else {
         user = "Anonymous";
     }
     let data = JSON.stringify({
