@@ -66,7 +66,7 @@ async function userReviews(userID) {
     client.end();
     return reviews;
 }
-}
+
 
 const session = {
     secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
