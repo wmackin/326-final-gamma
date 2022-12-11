@@ -285,8 +285,8 @@ app.get('/user/:userID/',
     <body style="height:70vh;">
     <div>
         <div>
-            <a class="btn" href="/">Return</button>
-            <a class="btn float-end">Signout</button>
+            <a class="btn" href="/">Return</a>
+            <a class="btn float-end">Signout</a>
         </div>
     </div>
     
