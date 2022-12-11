@@ -261,6 +261,61 @@ app.get('/user/:userID/',
 	(req, res) => {
 	    // Verify this is the right user.
 	    if (req.params.userID === req.user) {
+            res.send(`
+            <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .btn-square-lg {
+    	        width: 200px !important;
+                height: 125px !important;
+                text-align: center;
+                padding: 0px;
+                font-size:18px;
+                margin-bottom:25px;
+            }
+        </style>
+       
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>Account</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body style="height:70vh;">
+    <div>
+        <div>
+            <a class="btn" href="/">Return</button>
+            <a class="btn float-end">Signout</button>
+        </div>
+    </div>
+    
+    <div class="display-1">
+        <div class="text-center">
+            ` + req.params.userid + `
+        </div>
+    </div>
+    <div>
+        <div> 
+            <h2>Recent Reviews And Ratings</h2>
+        </div>
+        <div>
+            <button type="button" class="btn btn-secondary btn-square-lg">Lore</button>
+            <h5> Review</h5>
+        </div>
+        <div>
+            <button type="button" class="btn btn-secondary btn-square-lg">Lore</button>
+            <h5> Review</h5>
+        </div>
+    </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    </body>
+</html>
+            `)
+
+
 		res.writeHead(200, {"Content-Type" : "text/html"});
 		res.write('<H1>HELLO ' + req.params.userID + "</H1>");
 		res.write('<br/><a href="/logout">click here to logout</a>');
